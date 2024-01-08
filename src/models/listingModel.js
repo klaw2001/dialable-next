@@ -7,14 +7,14 @@ const listingSchema = new Schema(
       type: String,
       required: true,
     },
-    user:{
-      type:Schema.Types.ObjectId,
-      required:true,
-      ref:User
+    user: {
+      type: Schema.Types.ObjectId,
+      required: true,
+      ref: User,
     },
     category: {
       type: Schema.Types.ObjectId,
-      ref: Category, 
+      ref: Category,
       required: true,
     },
     keywords: {
@@ -44,10 +44,22 @@ const listingSchema = new Schema(
       type: String,
       required: true,
     },
-    images:{
-      type:String,
-      default:null
-  },
+    images: {
+      type: String,
+      default: null,
+    },
+    location: {
+      type: String,
+      required: true,
+    },
+    lowestPrice: {
+      type: Number,
+      required: true,
+    },
+    highestPrice: {
+      type: Number,
+      required: true,
+    },
     company: {
       type: String,
       required: true,

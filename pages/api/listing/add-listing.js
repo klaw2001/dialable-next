@@ -52,25 +52,22 @@ export default async function POST(req, res) {
       website,
       designation,
       company,
+      location,
+      lowestPrice,
+      higestPrice,
+      images,
       facebook,
       twitter,
       linked,
       skype,
     } = req.body;
 
-    let images = [];
-    if (req.files && req.files["images"]) {
-      req.files["images"].forEach((file) => {
-        images.push(file.filename);
-      });
-    }
-
     // console.log('Files:', req.files);
 
     const listingData = new Listing({
       placeName,
-      category,
       user,
+      category,
       keywords,
       description,
       name,
@@ -79,11 +76,14 @@ export default async function POST(req, res) {
       website,
       designation,
       company,
+      location,
+      lowestPrice,
+      higestPrice,
+      images,
       facebook,
       twitter,
       linked,
       skype,
-      images: images.join(", "),
     });
 
     const validationError = listingData.validateSync();

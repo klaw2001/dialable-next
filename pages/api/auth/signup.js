@@ -1,6 +1,12 @@
 import User from "../../../src/models/userModel.js";
-// import connectDB from "../../../src/dbConfig/dbConfig";
-// connectDB();
+import connectDB from "../../../src/dbConfig/dbConfig";
+connectDB()
+  .then(() => {
+    console.log("connected");
+  })
+  .catch(() => {
+    console.log("not connected");
+  });
 
 export default async function handler(req, res) {
   if (req.method === "POST") {
