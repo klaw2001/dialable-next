@@ -2,53 +2,35 @@ import multer from "multer";
 import fs from "fs";
 import path from "path";
 import Category from "../../../src/models/categoryModel.js";
+import NextCors from "nextjs-cors";
+import connectDB from "../../../src/dbConfig/dbConfig.js";
+connectDB()
+  .then(() => {
+    console.log("connected");
+  })
+  .catch(() => {
+    console.log("not connected");
+  });
 
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    const uploadPath = "./uploads";
-    const subfolder = "category";
 
-    // Create "uploads" folder if it doesn't exist
-    if (!fs.existsSync(uploadPath)) {
-      fs.mkdirSync(uploadPath);
-    }
-
-    // Create subfolder inside "uploads"
-    const subfolderPath = path.join(uploadPath, subfolder);
-    if (!fs.existsSync(subfolderPath)) {
-      fs.mkdirSync(subfolderPath);
-    }
-
-    cb(null, subfolderPath);
-  },
-  filename: function (req, file, cb) {
-    const name = file.originalname; // abc.png
-    const ext = path.extname(name); // .png
-    const nameArr = name.split("."); // [abc,png]
-    nameArr.pop();
-    const fname = nameArr.join("."); //abc
-    const fullname = fname + "-" + Date.now() + ext; // abc-12345.png
-    cb(null, fullname);
-  },
-});
-
-const upload = multer({ storage: storage });
 
 export default async function DELETE(req, res) {
+   if (req.method === 'OPTIONS') {
+    res.status(200).end();
+    return;
+  }
+  await NextCors(req, res, {
+    // Options
+    methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE' , 'OPTIONS'],
+    origin: '*',
+    optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+ });
   try {
     const categoryID = req.params.category_id;
     const category = await Category.findOne({ _id: categoryID });
 
-    let image = category.image;
-
-    if (req.file !== undefined) {
-      image = req.file.filename;
-      if (fs.existsSync("./uploads/category/" + category.image)) {
-        fs.unlinkSync("./uploads/category/" + category.image);
-      }
-    }
-
     const deleteCat = await Category.deleteOne(category);
+    console.log(deleteCat)
     if (deleteCat.acknowledged) {
       return res.status(200).json({
         message: "Category Deleted!",
