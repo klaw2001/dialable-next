@@ -92,7 +92,7 @@ export default async function handler(req, res) {
       const listingID = req.query.id;
       const listingData = await Listing.findOne({ _id: listingID })
         .populate("category")
-        .populate("subcategory");
+        // .populate("subcategory");
 
       if (listingData) {
         return res.status(200).json({

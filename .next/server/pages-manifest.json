@@ -2,5 +2,7 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/api/categories/get-current-category/[id]": "pages/api/categories/get-current-category/[id].js"
+  "/": "pages/index.js",
+  "/api/auth/get-current-user/[id]": "pages/api/auth/get-current-user/[id].js",
+  "/api/listing/get-all-listings": "pages/api/listing/get-all-listings.js"
 }

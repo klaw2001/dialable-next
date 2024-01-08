@@ -44,6 +44,10 @@ const listingSchema = new Schema(
       type: String,
       required: true,
     },
+    thumbnail:{
+      type:String,
+      default:null
+  },
     images:{
       type:String,
       default:null

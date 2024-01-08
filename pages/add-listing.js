@@ -3,6 +3,7 @@ import PageBanner from "../src/components/PageBanner";
 import Layout from "../src/layouts/Layout";
 import Image from "next/image";
 import axios from "axios";
+import { imageUpload } from "../src/utils";
 
 const AddListing = () => {
   const [category, setCategory] = useState([]);
@@ -18,7 +19,6 @@ const AddListing = () => {
       })
       .catch((err) => console.log(err));
     }, []);
-    console.log(category)
     
     
     useEffect(() => {
@@ -44,12 +44,37 @@ const AddListing = () => {
             linked: "",
             skype: "",
             name:"",
+            thumbnail:""
           };
           setFormData(initialFormData)
         })
         .catch((err) => console.log(err));
     }, []);
-    console.log(user)
+
+
+    const handleThumbnailUpload = async (file) => {
+      try {
+        // Call the imageUpload function to upload the image
+        const imageUrl = await imageUpload(file);
+  
+        console.log(imageUrl)
+        // Update the formData with the image URL
+        setFormData((prevData) => ({
+          ...prevData,
+          thumbnail: imageUrl,
+        }));
+      } catch (error) {
+        console.error("Error uploading thumbnail:", error);
+      }
+    };
+
+    
+  const handleFileChange = async (e) => {
+    const file = e.target.files[0];
+
+    // Call the function to handle thumbnail upload
+    handleThumbnailUpload(file);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -312,7 +337,12 @@ const AddListing = () => {
                   <div className="row">
                     <div className="col-lg-4">
                       <div className="form_group file-input-one">
-                        <input type="file" name="Image" />
+                      <input
+          type="file"
+          name="thumbnail"
+          onChange={handleFileChange}
+          // accept="image/*"
+        />
                         <div className="upload-content">
                           <div className="upload-title-icon d-flex align-items-center justify-content-center">
                             <Image
