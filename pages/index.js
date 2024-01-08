@@ -18,6 +18,7 @@ import axios from "axios";
 
 const Index = () => {
   const [video, setVideo] = useState(false);
+  const [categoryList , setCategoryList] = useState([])
   const [listing , setListing] = useState([])
 
   useEffect(() => {
@@ -32,6 +33,18 @@ const Index = () => {
         console.log(err);
       });
   }, []);
+  useEffect(()=>{
+    axios.get('/api/categories/get-categories')
+    .then((res) => {
+      console.log(res.data.data);
+      
+
+      setCategoryList(res.data.data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  })
 
   const threeList = listing
   console.log(threeList)
@@ -229,6 +242,7 @@ const Index = () => {
                   <img
                     src={elem.thumbnail}
                     alt="Listing Image"
+                    className="w-100"
                   />
                   <span className="featured-btn">Featured</span>
                   <div className="thumbnail-meta d-flex justify-content-between align-items-center">
@@ -237,7 +251,7 @@ const Index = () => {
                         <i className="flaticon-chef"></i>
                       </div>
                       <div className="title">
-                        <h6>{elem.category.name}</h6>
+                        <h6>{elem.category?.name}</h6>
                       </div>
                     </div>
                     <span className="status st-open">Open</span>
@@ -683,7 +697,7 @@ const Index = () => {
       <section className="cta-area">
         <div
           className="cta-wrapper-one bg_cover"
-          style={{ backgroundImage: `url(assets/images/bg/cta-bg-1.jpg)` }}
+          style={{ backgroundImage: `url(assets/images/home-banner.jpg)` }}
         >
           <div className="container">
             <div className="row justify-content-center">
@@ -709,7 +723,7 @@ const Index = () => {
               <div className="col-lg-6">
                 <div className="features-img wow fadeInLeft">
                   <img
-                    src="assets/images/features/features-1.jpg"
+                    src="assets/images/about-us.jpeg"
                     alt="Features Image"
                   />
                 </div>
@@ -794,9 +808,11 @@ const Index = () => {
             {...PlaceSliderOne}
             className="place-slider-one wow fadeInDown"
           >
+            {categoryList.map((elem)=>(
+
             <div className="place-item place-item-one">
               <div className="place-thumbnail">
-                <img src="assets/images/place/place-1.jpg" alt="Place Image" />
+                <img src={elem.image} alt="Place Image" className="object-fit-contain" style={{height:'300px' , objectFit:'contain'}}/>
                 <div className="place-overlay">
                   <div className="place-content text-center">
                     <span className="listing">10 Listing</span>
@@ -810,7 +826,8 @@ const Index = () => {
                 </div>
               </div>
             </div>
-            <div className="place-item place-item-one">
+            ))}
+            {/* <div className="place-item place-item-one">
               <div className="place-thumbnail">
                 <img src="assets/images/place/place-2.jpg" alt="Place Image" />
                 <div className="place-overlay">
@@ -873,7 +890,7 @@ const Index = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
           </Slider>
         </div>
       </section>

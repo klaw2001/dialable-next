@@ -5,14 +5,15 @@ import axios from "axios";
 
 const Header1 = () => {
   const [user, setUser] = useState({});
-
+  const [loggedin , setLoggedIn] = useState(false)
   useEffect(() => {
-    const userID = localStorage.getItem('userID');
-
-    axios.get(`/api/auth/get-current-user/${userID}`)
+    const userID = localStorage.getItem("userID");
+    axios
+      .get(`/api/auth/get-current-user/${userID}`)
       .then((res) => {
-        const userData = res.data.user; 
+        const userData = res.data.user;
         setUser(userData);
+        setLoggedIn(true)
       })
       .catch((err) => console.log(err));
   }, []);
@@ -161,19 +162,43 @@ const Header1 = () => {
               <div className="col-lg-4 col-5">
                 <div className="header-right-nav">
                   <ul className="d-flex align-items-center">
-                    <li className="user-btn d-flex align-items-center" style={{gap:'10px'}}>
-                        <div className="sub-menu">
-                          <h6>Hello <a href="/profile" className="text-uppercase">{user.firstName}</a></h6>
-                          
-                        </div>
-                        <a href="/profile" className="icon">
-                          <i className="flaticon-avatar"></i>
-                        </a>
+                    <li
+                      className="user-btn d-flex align-items-center"
+                      style={{ gap: "10px" }}
+                    >
+                      <div className="sub-menu">
+                        <h6>
+                          {loggedin ? (
+                            <span>
+                              Hello{" "}
+                              <a href="/profile" className="text-uppercase">
+                                {user.firstName}
+                              </a>
+                            </span>
+                          ) : (
+                            <a href="/log-in" className="">Login</a>
+                            )}
+                        </h6>
+                      </div>
+                      {
+                        loggedin && (
+
+                      <a href="/profile" className="icon">
+                        <i className="flaticon-avatar"></i>
+                      </a>
+                        )
+                      }
                     </li>
                     <li className="hero-nav-btn">
+                      {loggedin ? (
                       <Link href="/add-listing">
                         <a className="main-btn icon-btn">Add Listing</a>
                       </Link>
+
+                      ):(
+                        <a href="/sign-up" className="main-btn icon-btn">Sign Up Now</a>
+
+                      )}
                     </li>
                     <li className="nav-toggle-btn">
                       <div className="navbar-toggler">
