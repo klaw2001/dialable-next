@@ -87,7 +87,7 @@ export default async function handler(req, res) {
           },
         }
       );
-      console.log(updatedData , name , image , req.body)
+      console.log(updatedData, name, image, req.body);
       if (updatedData.acknowledged)
         return res.status(200).json({
           message: "Category Updated!",

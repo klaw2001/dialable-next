@@ -1,55 +1,109 @@
-import multer from "multer";
-import fs from "fs";
-import path from "path";
 import Listing from "../../../../src/models/listingModel";
+import NextCors from "nextjs-cors";
+import connectDB from "../../../../src/dbConfig/dbConfig";
+connectDB()
+  .then(() => {
+    console.log("connected");
+  })
+  .catch(() => {
+    console.log("not connected");
+  });
 
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    const uploadPath = "./uploads";
-    const subfolder = "listing";
+export default async function handler(req, res) {
+  await NextCors(req, res, {
+    methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE", "OPTIONS"],
+    origin: "*",
+    optionsSuccessStatus: 200,
+  });
 
-    // Create "uploads" folder if it doesn't exist
-    if (!fs.existsSync(uploadPath)) {
-      fs.mkdirSync(uploadPath);
+  if (req.method === "PUT" || req.method === "PATCH") {
+    const listingId = req.params.listingId;
+
+    const {
+      placeName,
+      user,
+      category,
+      keywords,
+      description,
+      name,
+      email,
+      phone,
+      website,
+      designation,
+      company,
+      images,
+      facebook,
+      twitter,
+      linked,
+      skype,
+    } = req.body;
+
+    const updatedData = await productModel.updateOne(
+      { _id: listingId },
+      {
+        $set: {
+          placeName,
+          category,
+          keywords,
+          description,
+          name,
+          email,
+          phone,
+          website,
+          designation,
+          company,
+          facebook,
+          twitter,
+          linked,
+          skype,
+        },
+      }
+    );
+
+    const validationError = listingData.validateSync();
+    if (validationError) {
+      return res.status(400).json({ message: validationError.message });
     }
 
-    // Create subfolder inside "uploads"
-    const subfolderPath = path.join(uploadPath, subfolder);
-    if (!fs.existsSync(subfolderPath)) {
-      fs.mkdirSync(subfolderPath);
-    }
-
-    cb(null, subfolderPath);
-  },
-  filename: function (req, file, cb) {
-    const name = file.originalname; // abc.png
-    const ext = path.extname(name); // .png
-    const nameArr = name.split("."); // [abc,png]
-    nameArr.pop();
-    const fname = nameArr.join("."); //abc
-    const fullname = fname + "-" + Date.now() + ext; // abc-12345.png
-    cb(null, fullname);
-  },
-});
-
-const upload = multer({ storage: storage });
-
-export default async function GET(req, res) {
-  try {
-    const listingID = req.query.id;
-    const listingData = await Listing.findOne({ _id: listingID })
-      .populate("category")
-    //   .populate("subcategory");
-
-    if (listingData) {
+    if (updatedData) {
       return res.status(200).json({
-        data: listingData,
-        message: "Success",
+        data: updatedData,
+        message: "Listing Updated Successfully",
       });
     }
-  } catch (error) {
-    return res.status(500).json({
-      message: error.message,
-    });
+  } else if (req.method === "DELETE") {
+    try {
+      const listingId = req.params.product_id;
+
+      const removeData = await Listing.deleteOne({ _id: listingId });
+      if (removeData.acknowledged) {
+        return res.status(200).json({
+          data: removeData,
+          message: "Listing Deleted Successfully",
+        });
+      }
+    } catch (error) {
+      return res.status(500).json({
+        msg: error.msg,
+      });
+    }
+  } else if (req.method === "GET") {
+    try {
+      const listingID = req.query.id;
+      const listingData = await Listing.findOne({ _id: listingID })
+        .populate("category")
+        .populate("subcategory");
+
+      if (listingData) {
+        return res.status(200).json({
+          data: listingData,
+          message: "Success",
+        });
+      }
+    } catch (error) {
+      return res.status(500).json({
+        message: error.message,
+      });
+    }
   }
 }
