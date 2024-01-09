@@ -4,11 +4,24 @@ import PageBanner from "../src/components/PageBanner";
 import VideoPopup from "../src/components/VideoPopup";
 import Layout from "../src/layouts/Layout";
 import { getPagination, pagination } from "../src/utils";
+import axios from "axios";
 
 const Blog = () => {
   let sort = 2;
   const [active, setActive] = useState(1);
   const [state, setstate] = useState([]);
+  const [blogs , setBlogs] = useState([])
+
+  useEffect(() => {
+    axios
+      .get("api/blog/get-all-blogs")
+      .then((res) => {
+        setBlogs(res.data.data);
+      })
+      .catch((res) => {
+        console.log(res);
+      });
+  }, []);
   useEffect(() => {
     pagination(".blog-post-item", sort, active);
     let list = document.querySelectorAll(".blog-post-item");
@@ -24,13 +37,15 @@ const Blog = () => {
           <div className="row">
             <div className="col-lg-8">
               <div className="blog-standard-wrapper pb-50">
-                <div className="blog-post-item blog-post-item-four mb-50 wow fadeInUp">
+                {blogs.map((elem)=>(
+
+                <div className="blog-post-item blog-post-item-four mb-50 wow fadeInUp" key={elem._id}>
                   <div className="post-thumbnail">
-                    <Link href="/blog-details">
+                    <Link href={`/blog-single/${elem._id}`}>
                       <a>
                         <img
-                          src="assets/images/blog/blog-standard-1.jpg"
-                          alt="Blog Image"
+                          src={elem.image}
+                          alt={elem.title}
                         />
                       </a>
                     </Link>
@@ -63,7 +78,7 @@ const Blog = () => {
                     </div>
                     <h3 className="title">
                       <Link href="/blog-details">
-                        <a>Duis nonumer socios gem mattis</a>
+                        <a>{elem.title}</a>
                       </Link>
                     </h3>
                     <p>
@@ -76,7 +91,8 @@ const Blog = () => {
                     </a>
                   </div>
                 </div>
-                <div className="blog-post-item blog-post-item-four mb-50 wow fadeInUp">
+                ))}
+                {/* <div className="blog-post-item blog-post-item-four mb-50 wow fadeInUp">
                   <div className="post-thumbnail">
                     <Link href="/blog-details">
                       <a>
@@ -179,7 +195,10 @@ const Blog = () => {
                       Continue Reading
                     </a>
                   </div>
-                </div>
+                </div> */}
+
+
+
                 <div
                   className="blog-post-item blog-post-item-four blog-post-with-bg mb-50 bg_cover wow fadeInUp"
                   style={{

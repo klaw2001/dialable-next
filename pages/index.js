@@ -1449,7 +1449,7 @@ const Index = () => {
                   data-wow-delay="10ms"
                 >
                   <div className="post-thumbnail">
-                    <Link href="/blog-details">
+                    <Link href={`/blog-single/${elem._id}`}>
                       <a>
                         <img src={elem.image} alt="Blog Image" />
                       </a>
