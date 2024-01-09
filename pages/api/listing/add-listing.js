@@ -4,24 +4,7 @@ import path from "path";
 import Listing from "../../../src/models/listingModel";
 
 export default async function POST(req, res) {
-  const {
-    placeName,
-    user,
-    category,
-    keywords,
-    description,
-    name,
-    email,
-    phone,
-    website,
-    designation,
-    company,
-    facebook,
-    twitter,
-    linked,
-    skype,
-    thumbnail,
-  } = req.body;
+ 
 
   // let images = [];
   // if (req.files && req.files["images"]) {
