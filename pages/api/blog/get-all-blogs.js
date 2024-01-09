@@ -1,6 +1,6 @@
 import NextCors from "nextjs-cors";
-import connectDB from "../../../../src/dbConfig/dbConfig";
-import Blog from "../../../src/models/blogModel";
+import BlogD from "../../../src/models/blogModel";
+import connectDB from "../../../src/dbConfig/dbConfig";
 connectDB()
   .then(() => {
     console.log("connected");
@@ -17,7 +17,7 @@ export default async function GET(req, res) {
   });
 
   try {
-    const blogData = await Blog.find();
+    const blogData = await BlogD.find();
 
     if (blogData) {
       return res.status(200).json({

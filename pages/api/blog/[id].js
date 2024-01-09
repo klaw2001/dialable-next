@@ -1,6 +1,6 @@
 import NextCors from "nextjs-cors";
 import connectDB from "../../../../src/dbConfig/dbConfig";
-import Blog from "../../../src/models/blogModel";
+import BlogD from "../../../src/models/blogModel";
 connectDB()
   .then(() => {
     console.log("connected");
@@ -19,7 +19,7 @@ export default async function handler(req, res) {
   if (req.method === "GET") {
     try {
       const blogID = req.query.id;
-      const blogData = await Blog.findOne({ _id: blogID });
+      const blogData = await BlogD.findOne({ _id: blogID });
 
       if (blogData) {
         return res.status(200).json({
@@ -41,7 +41,7 @@ export default async function handler(req, res) {
       const blogID = req.query.id;
       const { title, image, content } = req.body;
 
-      const blog = await Blog.findOne({ _id: blogID });
+      const blog = await BlogD.findOne({ _id: blogID });
 
       if (!blog) {
         return res.status(404).json({
@@ -49,7 +49,7 @@ export default async function handler(req, res) {
         });
       }
 
-      const updatedData = await Blog.updateOne(
+      const updatedData = await BlogD.updateOne(
         { _id: blogID },
         {
           $set: {
@@ -92,7 +92,7 @@ export default async function handler(req, res) {
   } else if (req.method === "DELETE") {
     try {
       const blogID = req.query.id;
-      const blog = await Blog.findOne({ _id: blogID });
+      const blog = await BlogD.findOne({ _id: blogID });
 
       if (!blog) {
         return res.status(404).json({
@@ -100,7 +100,7 @@ export default async function handler(req, res) {
         });
       }
 
-      const deleteBlog = await Blog.deleteOne(blog);
+      const deleteBlog = await BlogD.deleteOne(blog);
 
       if (deleteBlog.acknowledged) {
         return res.status(200).json({
