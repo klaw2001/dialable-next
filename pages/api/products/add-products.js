@@ -47,10 +47,10 @@ export default async function POST(req, res) {
     });
 
     console.log(category)
-    // const validationError = productData.validateSync();
-    // if (validationError) {
-    //   return res.status(400).json({ message: validationError.message });
-    // }
+    const validationError = productData.validateSync();
+    if (validationError) {
+      return res.status(400).json({ message: validationError.message });
+    }
 
     productData.save();
     console.log(productData)

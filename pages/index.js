@@ -44,7 +44,7 @@ const Index = () => {
     });
   },[])
 
-  const threeList = listing
+  const threeList = listing.slice(0,3)
   console.log(threeList)
  
   return (
@@ -986,7 +986,7 @@ const Index = () => {
       <section className="intro-video">
         <div
           className="intro-wrapper-one bg_cover pt-115"
-          style={{ backgroundImage: `url(assets/images/bg/video-bg-1.jpg)` }}
+          style={{ backgroundImage: `url(assets/images/home-bg.jpg)` }}
         >
           <div className="container">
             <div className="row align-items-center">
