@@ -7,17 +7,20 @@ import Layout from "../src/layouts/Layout";
 const About = () => {
   return (
     <Layout>
+      <a href="#main-content" className="skip-link">
+        Skip to Content
+      </a>
       <PageBanner title={"About us"} />
 
       {/*====== Start Features Section ======*/}
-      <section className="features-area">
+      <section id="main-content" className="features-area">
         <div className="features-wrapper-three pt-110">
           <div className="container">
             <div className="row justify-content-center">
               <div className="col-lg-6">
                 <div className="section-title text-center mb-60 wow fadeInUp">
-                  <span className="sub-title">Some Feature</span>
-                  <h2>Caring Your Hobbies</h2>
+                  <span className="sub-title">about us</span>
+                  <h2>Welcome to Dialable </h2>
                 </div>
               </div>
             </div>
@@ -33,8 +36,8 @@ const About = () => {
                   <div className="content">
                     <h3 className="title">User Friendly</h3>
                     <p>
-                      Congue men porttitor blandit erat to loborti lacinia
-                      sapien pretium disenty
+                      Experience a user-friendly environment tailored for
+                      effortless accessibility and seamless interaction.
                     </p>
                     <Link href="/how-work">
                       <a className="btn-link icon-btn">More Details</a>
@@ -51,10 +54,10 @@ const About = () => {
                     <i className="flaticon-gift-box" />
                   </div>
                   <div className="content">
-                    <h3 className="title">Daily Offers</h3>
+                    <h3 className="title">Marketplace Experience</h3>
                     <p>
-                      Congue men porttitor blandit erat to loborti lacinia
-                      sapien pretium disenty
+                      Discover a personalized marketplace journey that caters to
+                      your unique needs and preferences.
                     </p>
                     <Link href="/how-work">
                       <a className="btn-link icon-btn">More Details</a>
@@ -71,10 +74,11 @@ const About = () => {
                     <i className="flaticon-laptop" />
                   </div>
                   <div className="content">
-                    <h3 className="title">Quick Search</h3>
+                    <h3 className="title">Empowering Entrepreneurship</h3>
                     <p>
-                      Congue men porttitor blandit erat to loborti lacinia
-                      sapien pretium disenty
+                      Cultivating independence, our platform offers a stage for
+                      disabled entrepreneurs to exhibit their skills, products,
+                      and services
                     </p>
                     <Link href="/how-work">
                       <a className="btn-link icon-btn">More Details</a>
@@ -91,10 +95,11 @@ const About = () => {
                     <i className="flaticon-headphone" />
                   </div>
                   <div className="content">
-                    <h3 className="title">Live Support</h3>
+                    <h3 className="title">Unleashing Potential for Growth:</h3>
                     <p>
-                      Congue men porttitor blandit erat to loborti lacinia
-                      sapien pretium disenty
+                      Our platform fosters economic independence and personal
+                      development by creating opportunities for disabled
+                      entrepreneurs.
                     </p>
                     <Link href="/how-work">
                       <a className="btn-link icon-btn">More Details</a>
@@ -115,21 +120,21 @@ const About = () => {
               <div className="col-lg-6">
                 <div className="features-img wow fadeInLeft">
                   <img
-                    src="assets/images/features/features-1.jpg"
-                    alt="Features Image"
+                    src="https://images.unsplash.com/photo-1569937728357-4971c45997c0?q=80&w=1934&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    alt="our speciality : Image that has four people smiling "
                   />
                 </div>
               </div>
               <div className="col-lg-6">
                 <div className="features-content-box features-content-box-one">
                   <div className="section-title section-title-left mb-30 wow fadeInUp">
-                    <span className="sub-title">Our Speciality</span>
-                    <h2>Comprehnsive All Great Destination Here</h2>
+                    <span className="sub-title">Unlocking Potential</span>
+                    <h2>Fostering Independence and Growth</h2>
                   </div>
                   <h5>
-                    Risus urnas Iaculis per amet vestibulum luctus.tincidunt
-                    ultricies aenean quam eros eleifend sodales cubilia mattis
-                    quam.
+                    Our platform empowers disabled entrepreneurs by unlocking
+                    their potential, fostering economic independence, and
+                    facilitating personal development.
                   </h5>
                   <ul className="features-list-one">
                     <li
@@ -140,10 +145,11 @@ const About = () => {
                         <i className="flaticon-find" />
                       </div>
                       <div className="content">
-                        <h5>Find What You Want</h5>
+                        <h5>Discover What You Want</h5>
                         <p>
-                          Rhoncus dolor quam etiam mattis, tincidunt nec
-                          lobortis sociis facilisi aenean netus tempor duis.
+                          Easily find products and services that cater to your
+                          unique needs, connecting you with a diverse range of
+                          offerings.
                         </p>
                       </div>
                     </li>
@@ -155,10 +161,11 @@ const About = () => {
                         <i className="flaticon-place" />
                       </div>
                       <div className="content">
-                        <h5>Easy Choose Your Place</h5>
+                        <h5>Effortlessly Choose Your Place</h5>
                         <p>
-                          Rhoncus dolor quam etiam mattis, tincidunt nec
-                          lobortis sociis facilisi aenean netus tempor duis.
+                          Seamlessly navigate through a variety of options,
+                          making it simple to choose the products and services
+                          that suit you best.
                         </p>
                       </div>
                     </li>
@@ -170,10 +177,11 @@ const About = () => {
                         <i className="flaticon-social-care" />
                       </div>
                       <div className="content">
-                        <h5>Live Online Assistance</h5>
+                        <h5>Live Assistance Anytime, Anywhere</h5>
                         <p>
-                          Rhoncus dolor quam etiam mattis, tincidunt nec
-                          lobortis sociis facilisi aenean netus tempor duis.
+                          Enjoy live online assistance to enhance your
+                          experience and ensure you receive the support you
+                          need, whenever you need it.
                         </p>
                       </div>
                     </li>
@@ -189,19 +197,28 @@ const About = () => {
       <section className="cta-area">
         <div
           className="cta-wrapper-two bg_cover b"
-          style={{ backgroundImage: "url(assets/images/bg/cta-bg-2.jpg)" }}
+          style={{
+            backgroundImage:
+              "url(https://images.unsplash.com/photo-1538947151057-dfe933d688d1?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)",
+          }}
         >
           <div className="container">
             <div className="row align-items-center">
               <div className="col-lg-7">
-                <div className="company-name wow fadeInLeft">Fioxen</div>
+                <div
+                  className="company-name wow fadeInLeft"
+                  style={{ position: "relative", right: "80px" }}
+                >
+                  dialable
+                </div>
               </div>
               <div className="col-lg-5">
                 <div className="cta-content-box wow fadeInRight">
-                  <h2>Visit the Best Places</h2>
+                  <h2>Discover Extraordinary Destinations</h2>
                   <p>
-                    Pharetra venenatis ante pulvinar fermentum dignissim one
-                    malesuada laoreet ridiculus fringilla quam
+                    Embark on a journey of unparalleled experiences. Our
+                    platform curates unique destinations, ensuring unforgettable
+                    adventures for all.
                   </p>
                   <Link href="/listing-grid">
                     <a className="main-btn icon-btn">Explore Now</a>
@@ -217,7 +234,8 @@ const About = () => {
       <section
         className="testimonial-area bg_cover pt-110 pb-265"
         style={{
-          backgroundImage: "url(assets/images/bg/testimonial-bg-2.jpg)",
+          backgroundImage:
+            "url(https://images.unsplash.com/photo-1613282201990-d766b5e4f32f?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)",
         }}
       >
         <div className="container">
@@ -247,7 +265,8 @@ const About = () => {
           <div
             className="newsletter-wrapper newsletter-wrapper-one bg_cover"
             style={{
-              backgroundImage: "url(assets/images/bg/newsletter-bg-1.jpg)",
+              backgroundImage:
+                "url(https://images.unsplash.com/photo-1585314062604-1a357de8b000?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)",
             }}
           >
             <div className="row">
@@ -272,7 +291,12 @@ const About = () => {
                       required=""
                     />
                     <i className="ti-location-pin" />
-                    <button className="main-btn icon-btn">Subscribe</button>
+                    <button
+                      style={{ backgroundColor: "#ff344f" }}
+                      className="main-btn icon-btn"
+                    >
+                      Subscribe
+                    </button>
                   </div>
                 </div>
               </div>

@@ -1,11 +1,12 @@
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import { About, Blog, Contact, Home, Listing, Pages, Profile } from "../Menu";
+import { About, Blog, Contact, Home, Listing, Pages } from "../Menu";
 import axios from "axios";
 
 const Header1 = () => {
   const [user, setUser] = useState({});
-  const [loggedin , setLoggedIn] = useState(false)
+  const [loggedin, setLoggedIn] = useState(false);
+
   useEffect(() => {
     const userID = localStorage.getItem("userID");
     axios
@@ -13,12 +14,17 @@ const Header1 = () => {
       .then((res) => {
         const userData = res.data?.user;
         setUser(userData);
-        setLoggedIn(true)
+        setLoggedIn(true);
       })
       .catch((err) => console.log(err));
   }, []);
+
   return (
     <header className="header-area header-area-one d-none d-xl-block">
+      <a href="#main-content" className="skip-link">
+        Skip to Content
+      </a>
+
       <div className="header-top">
         <div className="container-fluid">
           <div className="row">
@@ -29,27 +35,27 @@ const Header1 = () => {
                     <span>Follow us:</span>
                   </li>
                   <li>
-                    <a href="#">
+                    <a href="#" aria-label="Facebook">
                       <i className="ti-facebook"></i>
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                    <a href="#" aria-label="Twitter">
                       <i className="ti-twitter-alt"></i>
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                    <a href="#" aria-label="Pinterest">
                       <i className="ti-pinterest"></i>
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                    <a href="#" aria-label="Dribbble">
                       <i className="ti-dribbble"></i>
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                    <a href="#" aria-label="Instagram">
                       <i className="ti-instagram"></i>
                     </a>
                   </li>
@@ -59,7 +65,7 @@ const Header1 = () => {
             <div className="col-md-4">
               <div className="top-content text-center">
                 <p>
-                  We Have Special Offers Every{" "}
+                  We Have Special Offers{" "}
                   <Link href="/">
                     <a>Find your offer</a>
                   </Link>
@@ -71,7 +77,7 @@ const Header1 = () => {
                 <ul className="d-flex">
                   <li>
                     <Link href="/">
-                      <a>
+                      <a aria-label="Search">
                         <i className="ti-search"></i>
                         <span>Search here</span>
                       </a>
@@ -79,7 +85,7 @@ const Header1 = () => {
                   </li>
                   <li>
                     <Link href="/">
-                      <a>
+                      <a aria-label="Wishlist">
                         <i className="ti-heart"></i>
                         <span>Wishlist</span>
                       </a>
@@ -87,7 +93,7 @@ const Header1 = () => {
                   </li>
                   <li>
                     <Link href="/">
-                      <a>
+                      <a aria-label="Cart">
                         <i className="ti-shopping-cart"></i>
                         <span>Cart</span>
                       </a>
@@ -106,10 +112,10 @@ const Header1 = () => {
               <div className="col-lg-2 col-5">
                 <div className="site-branding">
                   <Link href="/">
-                    <a className="brand-logo">
+                    <a className="brand-logo" aria-label="Dialable - Home">
                       <img
                         src="http://res.cloudinary.com/dqpj1vyjn/image/upload/v1704696575/jh8xzhfpc4vtgtpfg7fi.jpg"
-                        alt="Brand Logo"
+                        alt="Dialable - Company Logo"
                       />
                     </a>
                   </Link>
@@ -171,33 +177,36 @@ const Header1 = () => {
                           {loggedin ? (
                             <span>
                               Hello{" "}
-                              <a href="/profile" className="text-uppercase">
-                                {user.firstName}
-                              </a>
+                              <Link href="/profile">
+                                <a className="text-uppercase">
+                                  {user.firstName}
+                                </a>
+                              </Link>
                             </span>
                           ) : (
-                            <a href="/log-in" className="">Login</a>
-                            )}
+                            <Link href="/log-in">
+                              <a>Login</a>
+                            </Link>
+                          )}
                         </h6>
                       </div>
-                      {
-                        loggedin && (
-
-                      <a href="/profile" className="icon">
-                        <i className="flaticon-avatar"></i>
-                      </a>
-                        )
-                      }
+                      {loggedin && (
+                        <Link href="/profile">
+                          <a className="icon">
+                            <i className="flaticon-avatar"></i>
+                          </a>
+                        </Link>
+                      )}
                     </li>
                     <li className="hero-nav-btn">
                       {loggedin ? (
-                      <Link href="/add-listing">
-                        <a className="main-btn icon-btn">Add Listing</a>
-                      </Link>
-
-                      ):(
-                        <a href="/sign-up" className="main-btn icon-btn">Sign Up Now</a>
-
+                        <Link href="/add-listing">
+                          <a className="main-btn icon-btn">Add Listing</a>
+                        </Link>
+                      ) : (
+                        <Link href="/sign-up">
+                          <a className="main-btn icon-btn">Sign Up Now</a>
+                        </Link>
                       )}
                     </li>
                     <li className="nav-toggle-btn">
@@ -217,4 +226,5 @@ const Header1 = () => {
     </header>
   );
 };
+
 export default Header1;
