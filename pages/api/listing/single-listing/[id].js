@@ -31,6 +31,9 @@ export default async function handler(req, res) {
       website,
       designation,
       company,
+      location,
+      lowestPrice,
+      higestPrice,
       images,
       facebook,
       twitter,
@@ -43,6 +46,7 @@ export default async function handler(req, res) {
       {
         $set: {
           placeName,
+          user,
           category,
           keywords,
           description,
@@ -52,6 +56,10 @@ export default async function handler(req, res) {
           website,
           designation,
           company,
+          location,
+          lowestPrice,
+          higestPrice,
+          images,
           facebook,
           twitter,
           linked,
