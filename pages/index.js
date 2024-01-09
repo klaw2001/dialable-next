@@ -236,7 +236,6 @@ const Index = () => {
             <div className="col-lg-4 col-md-6 col-sm-12" key={elem._id}>
               <div
                 className="listing-item listing-grid-one mb-45 wow fadeInUp"
-                dta-wow-delay="10ms"
               >
                 <div className="listing-thumbnail">
                   <img
@@ -810,7 +809,7 @@ const Index = () => {
           >
             {categoryList.map((elem)=>(
 
-            <div className="place-item place-item-one">
+            <div className="place-item place-item-one" key={elem._id}>
               <div className="place-thumbnail">
                 <img src={elem.image} alt="Place Image" className="object-fit-contain" style={{height:'300px' , objectFit:'contain'}}/>
                 <div className="place-overlay">
