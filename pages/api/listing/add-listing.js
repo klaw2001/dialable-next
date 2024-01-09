@@ -58,8 +58,8 @@ export default async function POST(req, res) {
   });
 
   const validationError = listingData.validateSync();
-  if (validationError) 
-   res.status(400).json({ message: validationError.message });
+  if (validationError)
+    res.status(400).json({ message: validationError.message });
 
   listingData.save();
   if (listingData) {
@@ -68,17 +68,4 @@ export default async function POST(req, res) {
       message: "Listing Data Added Successfully",
     });
   }
-}
-
-const validationError = listingData.validateSync();
-if (validationError) 
- res.status(400).json({ message: validationError.message });
-
-
-listingData.save();
-if (listingData) {
-  return res.status(201).json({
-    data: listingData,
-    message: "Listing Data Added Successfully",
-  });
 }
