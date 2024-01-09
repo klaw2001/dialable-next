@@ -44,6 +44,7 @@ const listingSchema = new Schema(
       type: String,
       required: true,
     },
+<<<<<<< HEAD
     images: {
       type: String,
       default: null,
@@ -60,6 +61,16 @@ const listingSchema = new Schema(
       type: Number,
       required: true,
     },
+=======
+    thumbnail:{
+      type:String,
+      default:null
+  },
+    images:{
+      type:String,
+      default:null
+  },
+>>>>>>> ab9ca313537565b2126e3c3eeda0de4992a60c3e
     company: {
       type: String,
       required: true,

@@ -1,13 +1,29 @@
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import ListingDetailsRight from "../src/components/ListingDetailsRight";
 import VideoPopup from "../src/components/VideoPopup";
 import Layout from "../src/layouts/Layout";
 import { GallerySlider2, reletedListingSlider2 } from "../src/sliderProps";
+import { useRouter } from "next/router";
+import axios from "axios";
 
 const ListingDetails2 = () => {
   const [video, setVideo] = useState(false);
+  
+  const router = useRouter()
+  const {id} = router.query
+  const [listing , setListing] = useState(null)
+
+  useEffect(()=>{
+    axios.get(`/api/listing/single-listing/${id}`)
+    .then((res)=>{
+      setListing(res)
+      console.log(res)
+    })
+    .catch((err)=>console.log(err))
+  },[])
+
   return (
     <Layout>
       {video && <VideoPopup close={setVideo} />}

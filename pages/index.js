@@ -1,5 +1,5 @@
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import dynamic from "next/dynamic";
 
@@ -14,9 +14,28 @@ import {
   ListingSliderOne,
   PlaceSliderOne,
 } from "../src/sliderProps";
+import axios from "axios";
 
 const Index = () => {
   const [video, setVideo] = useState(false);
+  const [listing , setListing] = useState([])
+
+  useEffect(() => {
+    axios.get('/api/listing/get-all-listings')
+      .then((res) => {
+        console.log(res.data.data);
+        
+  
+        setListing(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  const threeList = listing
+  console.log(threeList)
+ 
   return (
     <Layout>
       {video && <VideoPopup close={setVideo} />}
@@ -199,14 +218,16 @@ const Index = () => {
             </div>
           </div>
           <div className="row">
-            <div className="col-lg-4 col-md-6 col-sm-12">
+            {threeList.map((elem)=>(
+
+            <div className="col-lg-4 col-md-6 col-sm-12" key={elem._id}>
               <div
                 className="listing-item listing-grid-one mb-45 wow fadeInUp"
                 dta-wow-delay="10ms"
               >
                 <div className="listing-thumbnail">
                   <img
-                    src="assets/images/listing/listing-grid-1.jpg"
+                    src={elem.thumbnail}
                     alt="Listing Image"
                   />
                   <span className="featured-btn">Featured</span>
@@ -216,7 +237,7 @@ const Index = () => {
                         <i className="flaticon-chef"></i>
                       </div>
                       <div className="title">
-                        <h6>Restaurant</h6>
+                        <h6>{elem.category.name}</h6>
                       </div>
                     </div>
                     <span className="status st-open">Open</span>
@@ -225,7 +246,7 @@ const Index = () => {
                 <div className="listing-content">
                   <h3 className="title">
                     <Link href="/listing-details-1">
-                      <a>Food Corner</a>
+                      <a>{elem.placeName}</a>
                     </Link>
                   </h3>
                   <div className="ratings">
@@ -275,7 +296,8 @@ const Index = () => {
                 </div>
               </div>
             </div>
-            <div className="col-lg-4 col-md-6 col-sm-12">
+            ))}
+            {/* <div className="col-lg-4 col-md-6 col-sm-12">
               <div
                 className="listing-item listing-grid-one mb-45 wow fadeInUp"
                 dta-wow-delay="20ms"
@@ -426,7 +448,7 @@ const Index = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
             {/* <div className="col-lg-4 col-md-6 col-sm-12">
               <div
                 className="listing-item listing-grid-one mb-45 wow fadeInUp"

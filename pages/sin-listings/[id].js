@@ -18,7 +18,7 @@ const ListingDetails1 = () => {
   useEffect(()=>{
     axios.get(`/api/listing/single-listing/${id}`)
     .then((res)=>{
-      setListing(res)
+      setListing(res.data.data)
     })
     .catch((err)=>console.log(err))
   },[])
@@ -41,8 +41,8 @@ const ListingDetails1 = () => {
                       />
                     </div>
                     <div className="content">
-                      <span className="cat-btn">Restaurant</span>
-                      <h3>Food Corner</h3>
+                      <span className="cat-btn">{listing.category.name}</span>
+                      <h3>{listing.placeName}</h3>
                       <p className="tag">
                         <a href="#">Popular restaurant</a>,
                         <a href="#">California</a>
@@ -121,17 +121,9 @@ const ListingDetails1 = () => {
             <div className="col-lg-8">
               <div className="listing-details-wrapper listing-details-wrapper-one">
                 <div className="listing-content mb-50 wow fadeInUp">
-                  <h3 className="title">Delicious Restaurant</h3>
+                  <h3 className="title">{listing.placeName}</h3>
                   <p>
-                    Parturient varius elementum maecenas faucibus maecenas
-                    inceptos commodo metus vitae ac pretium magnis. Ridiculus
-                    aenean diam duis montes mattis curae dis platea cubilia
-                    fames justo nullam per incepto Accumsan mollis, semper nisl
-                    nulla per curae ante tellus cursus ut blandit eleifend ut
-                    adipiscing fringilla Sociosqu penatibus nascetur senectus,
-                    molestie sed habitant adipiscing maecenas ultrices curae
-                    sociis mi eros ultrices euismod risus cubilia eget habitasse
-                    facilisic
+                    {listing.description}
                   </p>
                   <p className="para">
                     Eros senectus etiam sed habitasse arcu habitant nulla nam

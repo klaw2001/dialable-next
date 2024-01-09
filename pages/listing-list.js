@@ -20,7 +20,7 @@ const ListingList = () => {
         
   
         setListing(res.data.data);
-        setMyids(categoryIds);
+        // setMyids(categoryIds);
       })
       .catch((err) => {
         console.log(err);
@@ -204,7 +204,7 @@ const ListingList = () => {
                 <div className="listing-item listing-list-item-two mb-60 wow fadeInUp" key={elem._id}>
                   <div className="listing-thumbnail">
                     <img
-                      src="assets/images/listing/listing-list-5.jpg"
+                      src={elem.thumbnail}
                       alt="listing Image"
                     />
                     <div className="thumbnail-meta d-flex justify-content-between align-items-center">
