@@ -31,6 +31,7 @@ export default async function POST(req, res) {
       thumbnail,
     } = req.body;
 
+    console.log(req.body)
     
     // console.log('Files:', req.files);
 

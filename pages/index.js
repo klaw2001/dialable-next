@@ -24,7 +24,6 @@ const Index = () => {
   useEffect(() => {
     axios.get('/api/listing/get-all-listings')
       .then((res) => {
-        console.log(res.data.data);
         
   
         setListing(res.data.data);
@@ -36,7 +35,6 @@ const Index = () => {
   useEffect(()=>{
     axios.get('/api/categories/get-categories')
     .then((res) => {
-      console.log(res.data.data);
       
 
       setCategoryList(res.data.data);
@@ -62,9 +60,9 @@ const Index = () => {
                   <h1 className="wow fadeInUp">
                     Dream Explore Discover
                   </h1>
-                  <h3 className="wow fadeInDown">
+                  <h2 className="wow fadeInDown">
                     People Don’t Take,Trips Take People
-                  </h3>
+                  </h2>
                   <div
                     className="hero-search-wrapper wow fadeInUp"
                    
