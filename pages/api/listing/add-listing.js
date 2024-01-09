@@ -59,7 +59,7 @@ export default async function POST(req, res) {
 
   const validationError = listingData.validateSync();
   if (validationError) 
-   return  res.status(400).json({ message: validationError.message });
+   res.status(400).json({ message: validationError.message });
 
   listingData.save();
   if (listingData) {
@@ -72,7 +72,7 @@ export default async function POST(req, res) {
 
 const validationError = listingData.validateSync();
 if (validationError) 
-  return res.status(400).json({ message: validationError.message });
+ res.status(400).json({ message: validationError.message });
 
 
 listingData.save();
