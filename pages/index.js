@@ -258,7 +258,7 @@ const Index = () => {
                 </div>
                 <div className="listing-content">
                   <h3 className="title">
-                    <Link href="/listing-details-1">
+                    <Link href={`sin-listings/${elem._id}`}>
                       <a>{elem.placeName}</a>
                     </Link>
                   </h3>
@@ -731,12 +731,10 @@ const Index = () => {
                 <div className="features-content-box features-content-box-one">
                   <div className="section-title section-title-left mb-25 wow fadeInUp">
                     <span className="sub-title">Our Speciality</span>
-                    <h2>Comprehnsive All Great Destination Here</h2>
+                    <h2>One-Stop for All Local Businesses, Services, & Stores Nearby Across India</h2>
                   </div>
                   <h5>
-                    Risus urnas Iaculis per amet vestibulum luctus.tincidunt
-                    ultricies aenean quam eros eleifend sodales cubilia mattis
-                    quam.
+                  Welcome to Dialable, your 'one stop shop' where you are assisted with day-to-day and exclusive planning and purchasing activities. We take pride in our iconic customer support number, 8888888888 and the fact that we own a strong hold on local business information pan India.
                   </h5>
                   <ul className="features-list-one">
                     <li
@@ -749,8 +747,7 @@ const Index = () => {
                       <div className="content">
                         <h5>Find What You Want</h5>
                         <p>
-                          Rhoncus dolor quam etiam mattis, tincidunt nec
-                          lobortis sociis facilisi aenean netus tempor duis.
+                        Elevate your search for B2B requisites. From lead generation to promoting and selling products/services.
                         </p>
                       </div>
                     </li>
@@ -764,8 +761,7 @@ const Index = () => {
                       <div className="content">
                         <h5>Easy Choose Your Place</h5>
                         <p>
-                          Rhoncus dolor quam etiam mattis, tincidunt nec
-                          lobortis sociis facilisi aenean netus tempor duis.
+                        Experience the ultimate B2B portal by Dialable. You can explore countless diverse categories.
                         </p>
                       </div>
                     </li>
@@ -798,8 +794,8 @@ const Index = () => {
           <div className="row justify-content-center">
             <div className="col-lg-8">
               <div className="section-title text-center mb-60 wow fadeInUp">
-                <span className="sub-title">Feature Places</span>
-                <h2>Explore By Destination</h2>
+                <span className="sub-title">Dialable</span>
+                <h2>Explore By categories</h2>
               </div>
             </div>
           </div>
@@ -895,7 +891,7 @@ const Index = () => {
       </section>
       {/* <!--====== End Place Section ======--> */}
       {/* <!--====== Start Download Section ======--> */}
-      <section className="download-app">
+      {/* <section className="download-app">
         <div className="download-wrapper-one pt-115">
           <div className="container">
             <div className="row">
@@ -987,8 +983,92 @@ const Index = () => {
             </div>
           </div>
         </div>
+      </section> */}
+      {/* <!--====== Start Intro Video Section ======--> */}
+      <section className="intro-video">
+        <div
+          className="intro-wrapper-one bg_cover pt-115"
+          style={{ backgroundImage: `url(assets/images/bg/video-bg-1.jpg)` }}
+        >
+          <div className="container">
+            <div className="row align-items-center">
+              <div className="col-lg-5">
+                <div className="play-content play-content-one text-center wow fadeInLeft">
+                  <a
+                    href="#"
+                    className="video-popup"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setVideo(true);
+                    }}
+                  >
+                    <i className="flaticon-play-button"></i>
+                  </a>
+                  <h5>Play Video</h5>
+                </div>
+              </div>
+              <div className="col-lg-7">
+                <div className="intro-content-box intro-content-box-one wow fadeInRight">
+                  <div className="section-title section-title-left section-title-white mb-35">
+                    <span className="sub-title">Checkout List</span>
+                    <h2>Professional planners for your vacation</h2>
+                  </div>
+                  <p>
+                    Risus urnas Iaculis per amet vestibulum luctus tincidunt
+                    ultricies aenean quam eros eleifend sodales cubilia mattis
+                    quam.
+                  </p>
+                  <Link href="/listing-grid">
+                    <a className="main-btn icon-btn">Explore List</a>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
-      {/*<!--====== End Download Section ======--> */}
+      {/* <!--====== End Intro Video Section ======--> */}
+      {/* <!--====== Start Newsletter Section ======--> */}
+      <section className="newsletter-area">
+        <div className="container">
+          <div
+            className="newsletter-wrapper newsletter-wrapper-one bg_cover"
+            style={{
+              backgroundImage: `url(assets/images/bg/newsletter-bg-1.jpg)`,
+            }}
+          >
+            <div className="row">
+              <div className="col-lg-5">
+                <div className="newsletter-content-box-one wow fadeInLeft">
+                  <div className="icon">
+                    <i className="flaticon-email"></i>
+                  </div>
+                  <div className="content">
+                    <h2>Get Special Rewards</h2>
+                  </div>
+                </div>
+              </div>
+              <div className="col-lg-7">
+                <div className="newsletter-form wow fadeInRight">
+                  <div className="form_group">
+                    <input
+                      type="email"
+                      className="form_control"
+                      placeholder="Enter Address"
+                      name="email"
+                      required
+                    />
+                    <i className="ti-location-pin"></i>
+                    <button className="main-btn">Subscribe +</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      {/* <!--====== End Newsletter Section ======--> */}
+
       {/* <!--====== Start Popular Listing Section ======--> */}
       <section className="listing-grid-area pt-75 pb-110">
         <div className="container">
@@ -1251,90 +1331,9 @@ const Index = () => {
         </div>
       </section>
       {/* <!--====== End Popular Listing Section ======--> */}
-      {/* <!--====== Start Intro Video Section ======--> */}
-      <section className="intro-video">
-        <div
-          className="intro-wrapper-one bg_cover pt-115"
-          style={{ backgroundImage: `url(assets/images/bg/video-bg-1.jpg)` }}
-        >
-          <div className="container">
-            <div className="row align-items-center">
-              <div className="col-lg-5">
-                <div className="play-content play-content-one text-center wow fadeInLeft">
-                  <a
-                    href="#"
-                    className="video-popup"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setVideo(true);
-                    }}
-                  >
-                    <i className="flaticon-play-button"></i>
-                  </a>
-                  <h5>Play Video</h5>
-                </div>
-              </div>
-              <div className="col-lg-7">
-                <div className="intro-content-box intro-content-box-one wow fadeInRight">
-                  <div className="section-title section-title-left section-title-white mb-35">
-                    <span className="sub-title">Checkout List</span>
-                    <h2>Professional planners for your vacation</h2>
-                  </div>
-                  <p>
-                    Risus urnas Iaculis per amet vestibulum luctus tincidunt
-                    ultricies aenean quam eros eleifend sodales cubilia mattis
-                    quam.
-                  </p>
-                  <Link href="/listing-grid">
-                    <a className="main-btn icon-btn">Explore List</a>
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* <!--====== End Intro Video Section ======--> */}
-      {/* <!--====== Start Newsletter Section ======--> */}
-      <section className="newsletter-area">
-        <div className="container">
-          <div
-            className="newsletter-wrapper newsletter-wrapper-one bg_cover"
-            style={{
-              backgroundImage: `url(assets/images/bg/newsletter-bg-1.jpg)`,
-            }}
-          >
-            <div className="row">
-              <div className="col-lg-5">
-                <div className="newsletter-content-box-one wow fadeInLeft">
-                  <div className="icon">
-                    <i className="flaticon-email"></i>
-                  </div>
-                  <div className="content">
-                    <h2>Get Special Rewards</h2>
-                  </div>
-                </div>
-              </div>
-              <div className="col-lg-7">
-                <div className="newsletter-form wow fadeInRight">
-                  <div className="form_group">
-                    <input
-                      type="email"
-                      className="form_control"
-                      placeholder="Enter Address"
-                      name="email"
-                      required
-                    />
-                    <i className="ti-location-pin"></i>
-                    <button className="main-btn">Subscribe +</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* <!--====== End Newsletter Section ======--> */}
+
+      
+      
       {/* <!--====== Start Client Section ======--> */}
       <section className="client-area pt-120">
         <div className="client-wrapper-one pb-120">

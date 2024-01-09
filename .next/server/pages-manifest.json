@@ -2,7 +2,6 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/api/listing/get-all-listings": "pages/api/listing/get-all-listings.js",
-  "/api/auth/get-current-user/[id]": "pages/api/auth/get-current-user/[id].js",
-  "/api/categories/get-categories": "pages/api/categories/get-categories.js"
+  "/api/categories/get-categories": "pages/api/categories/get-categories.js",
+  "/api/products/add-products": "pages/api/products/add-products.js"
 }

@@ -108,7 +108,7 @@ const Header1 = () => {
                   <Link href="/">
                     <a className="brand-logo">
                       <img
-                        src="assets/images/logo/logo-1.png"
+                        src="http://res.cloudinary.com/dqpj1vyjn/image/upload/v1704696575/jh8xzhfpc4vtgtpfg7fi.jpg"
                         alt="Brand Logo"
                       />
                     </a>

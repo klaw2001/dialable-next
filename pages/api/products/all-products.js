@@ -50,10 +50,10 @@ export default async function GET(req, res) {
         path: "category",
         model: "Category",
       })
-      .populate({
-        path: "subcategory",
-        model: "SubCategory",
-      })
+      // .populate({
+      //   path: "subcategory",
+      //   model: "SubCategory",
+      // })
       .exec();
 
     if (products) {
