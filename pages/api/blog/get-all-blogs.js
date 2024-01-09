@@ -17,7 +17,7 @@ export default async function GET(req, res) {
   });
 
   try {
-    const blogData = await BlogD.find();
+    const blogData = await BlogD.find().populate('userID');
 
     if (blogData) {
       return res.status(200).json({
