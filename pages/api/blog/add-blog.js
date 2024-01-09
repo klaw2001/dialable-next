@@ -16,7 +16,6 @@ export default async function POST(req, res) {
       image,
       content,
       userID,
-      comments,
       tags,
     }).save();
 
