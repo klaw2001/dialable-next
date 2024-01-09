@@ -21,6 +21,7 @@ const Index = () => {
   const [categoryList , setCategoryList] = useState([])
   const [listing , setListing] = useState([])
   const [products , setProducts] = useState([])
+  const [blogs , setBlogs] = useState([])
 
   useEffect(() => {
     axios.get('/api/listing/get-all-listings')
@@ -52,6 +53,16 @@ const Index = () => {
     axios.get('/api/products/all-products')
     .then((res)=>{
       setProducts(res.data.data)
+    })
+    .catch((res)=>{
+      console.log(res)
+    })
+  },[])
+
+  useEffect(()=>{
+    axios.get('api/blog/get-all-blogs')
+    .then((res)=>{
+      setBlogs(res.data.data)
     })
     .catch((res)=>{
       console.log(res)
@@ -1406,7 +1417,9 @@ const Index = () => {
             </div>
           </div>
           <div className="row">
-            <div className="col-lg-4 col-md-6 col-sm-12">
+            {blogs.map((elem)=>(
+
+            <div className="col-lg-4 col-md-6 col-sm-12" key={elem._id}>
               <div
                 className="blog-post-item blog-post-item-one mb-40 wow fadeInUp"
                 data-wow-delay="10ms"
@@ -1415,7 +1428,7 @@ const Index = () => {
                   <Link href="/blog-details">
                     <a>
                       <img
-                        src="assets/images/blog/blog-1.jpg"
+                        src={elem.image}
                         alt="Blog Image"
                       />
                     </a>
@@ -1430,9 +1443,9 @@ const Index = () => {
                   <a href="#" className="cat-btn">
                     <i className="ti-bookmark-alt"></i>Tours & Travel
                   </a>
-                  <h3 className="title">
-                    <Link href="/blog-details">
-                      <a>Duis nonummy socios mattis tempus penatibus</a>
+                  <h3 className="title overflow-hidden" style={{height:'90px'}}>
+                    <Link href={`/blog-single/${elem._id}`}>
+                      <a className="">{elem.title}</a>
                     </Link>
                   </h3>
                   <div className="post-meta">
@@ -1454,7 +1467,9 @@ const Index = () => {
                 </div>
               </div>
             </div>
-            <div className="col-lg-4 col-md-6 col-sm-12">
+            ))}
+            
+            {/* <div className="col-lg-4 col-md-6 col-sm-12">
               <div
                 className="blog-post-item blog-post-item-one mb-40 wow fadeInUp"
                 data-wow-delay="20ms"
@@ -1549,7 +1564,7 @@ const Index = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
           <div className="row">
             <div className="col-lg-12">

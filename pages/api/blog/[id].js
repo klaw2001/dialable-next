@@ -1,6 +1,6 @@
 import NextCors from "nextjs-cors";
-import connectDB from "../../../../src/dbConfig/dbConfig";
 import BlogD from "../../../src/models/blogModel";
+import connectDB from "../../../src/dbConfig/dbConfig";
 connectDB()
   .then(() => {
     console.log("connected");
@@ -69,27 +69,7 @@ export default async function handler(req, res) {
         message: error.message,
       });
     }
-  } else if (req.method === "POST") {
-    const { title, image, content, userID } = req.body;
-    try {
-      const blogData = await new Blog({
-        title,
-        image,
-        content,
-        userID,
-      }).save();
-
-      if (blogData) {
-        return res.status(201).json({
-          data: blogData,
-          message: "Blog Added Successfully",
-        });
-      }
-    } catch (err) {
-      res.status(500).json({ error: "internal server error" });
-      console.log(err);
-    }
-  } else if (req.method === "DELETE") {
+  }  else if (req.method === "DELETE") {
     try {
       const blogID = req.query.id;
       const blog = await BlogD.findOne({ _id: blogID });

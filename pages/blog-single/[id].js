@@ -1,9 +1,9 @@
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import PageBanner from "../src/components/PageBanner";
-import Layout from "../src/layouts/Layout";
 import { useRouter } from "next/router";
 import axios from "axios";
+import PageBanner from "../../src/components/PageBanner";
+import Layout from "../../src/layouts/Layout";
 
 const BlogDetails = () => {
   const router = useRouter()
@@ -12,7 +12,7 @@ const [blog , setBlog] = useState({})
   useEffect(()=>{
     axios.get(`/api/blog/${id}`)
     .then((res)=>{
-      console.log(res)
+      setBlog(res.data.data)
     })
     .catch((err)=>console.log(err))
   },[])
@@ -29,8 +29,8 @@ const [blog , setBlog] = useState({})
                 <div className="blog-post-item">
                   <div className="post-thumbnail">
                     <img
-                      src="assets/images/blog/blog-single-1.jpg"
-                      alt="Blog Image"
+                      src={blog.image}
+                      alt={blog.title}
                     />
                   </div>
                   <div className="entry-content">
@@ -62,8 +62,8 @@ const [blog , setBlog] = useState({})
                         </li>
                       </ul>
                     </div>
-                    <h3 className="title">Duis nonumer socios gem mattis</h3>
-                    <p>
+                    {/* <h3 className="title">{blog.title}</h3> */}
+                    {/* <p>
                       Penatibus cursus Luctus taciti nibheren congue
                       sollicitudin placerat an tempus turpis magnis tempus inte
                       vivamus rhoncus roin habitasse diam mattis vivamus per.
@@ -154,7 +154,8 @@ const [blog , setBlog] = useState({})
                       convallis nunc lacus feugiat nonummy sociis phasellus
                       etiam auctor inte justo semper voluter pat mi morbi ornare
                       nunc{" "}
-                    </p>
+                    </p> */}
+<div dangerouslySetInnerHTML={{ __html: blog.content }} />
                     <ul className="list">
                       <li className="item">
                         Class Lorem convallis nibh quam te enim consectetuer
