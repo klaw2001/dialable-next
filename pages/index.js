@@ -734,7 +734,7 @@ const Index = () => {
                     <h2>One-Stop for All Local Businesses, Services, & Stores Nearby Across India</h2>
                   </div>
                   <h5>
-                  Welcome to Dialable, your 'one stop shop' where you are assisted with day-to-day and exclusive planning and purchasing activities. We take pride in our iconic customer support number, 8888888888 and the fact that we own a strong hold on local business information pan India.
+                  Welcome to Dialable, your one stop shop where you are assisted with day-to-day and exclusive planning and purchasing activities. We take pride in our iconic customer support number, 8888888888 and the fact that we own a strong hold on local business information pan India.
                   </h5>
                   <ul className="features-list-one">
                     <li

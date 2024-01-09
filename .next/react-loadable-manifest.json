@@ -1,8 +1,22 @@
 {
   "..\\node_modules\\next\\dist\\client\\index.js -> ../pages/_error": {
-    "id": "..\\node_modules\\next\\dist\\client\\index.js -> ../pages/_error",
+    "id": 9651,
     "files": [
-      "static/chunks/node_modules_next_dist_pages__error_js.js"
+      "static/chunks/651.243d23442247d286.js"
+    ]
+  },
+  "index.js -> ../src/components/Counter": {
+    "id": 7232,
+    "files": [
+      "static/chunks/232.d4057609b406bf8a.js"
+    ]
+  },
+  "listing-list.js -> ../src/components/RangeSlider": {
+    "id": 8490,
+    "files": [
+      "static/chunks/715-fb9f271a910a030e.js",
+      "static/css/7bd3985a6f150028.css",
+      "static/chunks/740.636c6a15cd53388c.js"
     ]
   }
 }
