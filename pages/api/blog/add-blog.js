@@ -9,13 +9,15 @@ connectDB()
     console.log("not connected");
   });
 export default async function POST(req, res) {
-  const { title, image, content, userID } = req.body;
+  const { title, image, content, userID, comments, tags } = req.body;
   try {
     const blogData = await new BlogD({
       title,
       image,
       content,
       userID,
+      comments,
+      tags,
     }).save();
 
     if (blogData) {

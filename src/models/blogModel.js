@@ -20,6 +20,12 @@ const blogSchema = new Schema(
       type: String,
       default: null,
     },
+    comments: {
+      type: String,
+    },
+    tags: {
+      type: String,
+    },
     reviews: [
       {
         user: {

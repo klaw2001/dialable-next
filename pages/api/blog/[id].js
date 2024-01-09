@@ -39,7 +39,7 @@ export default async function handler(req, res) {
   } else if (req.method === "PUT" || req.method === "PATCH") {
     try {
       const blogID = req.query.id;
-      const { title, image, content } = req.body;
+      const { title, image, content, comments, tags } = req.body;
 
       const blog = await BlogD.findOne({ _id: blogID });
 
@@ -56,6 +56,8 @@ export default async function handler(req, res) {
             title: title,
             image: image,
             content: content,
+            comments: comments,
+            tags: tags,
           },
         }
       );
@@ -69,7 +71,7 @@ export default async function handler(req, res) {
         message: error.message,
       });
     }
-  }  else if (req.method === "DELETE") {
+  } else if (req.method === "DELETE") {
     try {
       const blogID = req.query.id;
       const blog = await BlogD.findOne({ _id: blogID });
