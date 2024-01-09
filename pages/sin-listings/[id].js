@@ -41,7 +41,7 @@ const ListingDetails1 = () => {
                       />
                     </div>
                     <div className="content">
-                      <span className="cat-btn">{listing.category?.name}</span>
+                      {/* <span className="cat-btn">{listing?.category?.name}</span> */}
                       <h3>{listing.placeName}</h3>
                       <p className="tag">
                         <a href="#">Popular restaurant</a>,
