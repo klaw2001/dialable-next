@@ -20,6 +20,7 @@ const Index = () => {
   const [video, setVideo] = useState(false);
   const [categoryList , setCategoryList] = useState([])
   const [listing , setListing] = useState([])
+  const [products , setProducts] = useState([])
 
   useEffect(() => {
     axios.get('/api/listing/get-all-listings')
@@ -46,6 +47,18 @@ const Index = () => {
 
   const threeList = listing.slice(0,3)
   console.log(threeList)
+
+  useEffect(()=>{
+    axios.get('/api/products/all-products')
+    .then((res)=>{
+      setProducts(res.data.data)
+    })
+    .catch((res)=>{
+      console.log(res)
+    })
+  },[])
+
+  const productsList = products.slice(0,3)
  
   return (
     <Layout>
@@ -1073,8 +1086,8 @@ const Index = () => {
           <div className="row justify-content-center">
             <div className="col-lg-8">
               <div className="section-title text-center mb-60 wow fadeInUp">
-                <span className="sub-title">Featured List</span>
-                <h2>Explore Destination</h2>
+                <span className="sub-title">Sale On Category</span>
+                <h2>Mobility Products</h2>
               </div>
             </div>
           </div>
@@ -1082,16 +1095,16 @@ const Index = () => {
             {...ListingSliderOne}
             className="listing-slider-one wow fadeInDown"
           >
-            <div className="listing-item listing-grid-item-two">
+            {productsList.map((elem)=>(
+
+            <div className="listing-item listing-grid-item-two" key={elem._id}>
               <div className="listing-thumbnail">
                 <img
-                  src="assets/images/listing/listing-grid-7.jpg"
-                  alt="Listing Image"
+                  src={elem.thumbnail}
+                  alt={elem.name}
                 />
-                <a href="#" className="cat-btn">
-                  <i className="flaticon-chef"></i>
-                </a>
-                <span className="featured-btn">Featured</span>
+                
+                <span className="featured-btn">{elem.category.name}</span>
                 <ul className="ratings ratings-four">
                   <li className="star">
                     <i className="flaticon-star-1"></i>
@@ -1117,17 +1130,17 @@ const Index = () => {
               </div>
               <div className="listing-content">
                 <h3 className="title">
-                  <Link href="/listing-details-1">
-                    <a>Pizza Recipe</a>
+                  <Link href={`/products/${elem._id}`}>
+                    <a>{elem.name}</a>
                   </Link>
                 </h3>
-                <p>Popular restaurant in california</p>
+                <p className="text-truncate">{elem.shortdescription}</p>
                 <span className="phone-meta">
                   <i className="ti-tablet"></i>
-                  <a href="tel:+982653652-05">+98 (265) 3652 - 05</a>
-                  <span className="status st-open">Open</span>
+                  <span className="price">Price : ₹{elem.price}</span>
+                  <span className="status st-open">SALE</span>
                 </span>
-                <div className="listing-meta">
+                {/* <div className="listing-meta">
                   <ul>
                     <li>
                       <span>
@@ -1141,10 +1154,11 @@ const Index = () => {
                       </span>
                     </li>
                   </ul>
-                </div>
+                </div> */}
               </div>
             </div>
-            <div className="listing-item listing-grid-item-two">
+            ))}
+            {/* <div className="listing-item listing-grid-item-two">
               <div className="listing-thumbnail">
                 <img
                   src="assets/images/listing/listing-grid-8.jpg"
@@ -1324,7 +1338,7 @@ const Index = () => {
                   </ul>
                 </div>
               </div>
-            </div>
+            </div> */}
           </Slider>
         </div>
       </section>

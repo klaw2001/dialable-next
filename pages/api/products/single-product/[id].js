@@ -36,45 +36,45 @@ export default async function handler(req, res) {
     }
   } else if (req.method === "PUT" || req.method === "PATCH") {
     try {
-      const product_id = req.params.product_id;
+      const product_id = req.query.id;
 
       const {
         name,
         category,
-        subcategory,
+        // subcategory,
         quantity,
         price,
         shortdescription,
         description,
+        thumbnail
       } = req.body;
 
       // console.log('Files:', req.files);
 
-      const updatedData = await Product.updateOne(
+      const productData = await Product.updateOne(
         { _id: product_id },
         {
           $set: {
             name: name,
             category: category,
-            subcategory: subcategory,
+            // subcategory: subcategory,
             quantity: quantity,
             price: price,
             shortdescription: shortdescription,
             description: description,
             thumbnail: thumbnail,
-            images: images,
           },
         }
       );
 
-      const validationError = productData.validateSync();
-      if (validationError) {
-        return res.status(400).json({ message: validationError.message });
-      }
+      // const validationError = productData.validateSync();
+      // if (validationError) {
+      //   return res.status(400).json({ message: validationError.message });
+      // }
 
-      if (updatedData) {
+      if (productData) {
         return res.status(200).json({
-          data: updatedData,
+          data: productData,
           message: "Product Updated Successfully",
         });
       }
@@ -85,7 +85,7 @@ export default async function handler(req, res) {
     }
   } else if (req.method === "DELETE") {
     try {
-      const productID = req.params.product_id;
+      const productID = req.query.id;
 
       const removeData = await Product.deleteOne({ _id: productID });
       if (removeData.acknowledged) {

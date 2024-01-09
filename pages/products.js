@@ -66,7 +66,7 @@ const Products = () => {
                 <div className="products-item products-item-one mb-25 wow fadeInUp">
                   <div className="product-img">
                     <img
-                      src="assets/images/products/products-1.jpg"
+                      src={elem.thumbnail}
                       alt="products Image"
                     />
                     <div className="product-overlay d-flex align-items-end justify-content-center">
