@@ -9,9 +9,9 @@ export const Home = () => (
     <li className="menu-item">
       <Link href="/index-2">Home Two</Link>
     </li>
-    <li className="menu-item">
+    {/* <li className="menu-item">
       <Link href="/index-3">Home Three</Link>
-    </li>
+    </li> */}
   </Fragment>
 );
 export const About = () => (

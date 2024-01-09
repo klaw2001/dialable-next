@@ -16,7 +16,7 @@ const productSchema = new Schema({
   },
   subcategory: {
     type: Schema.Types.ObjectId,
-    required: true,
+    required: false,
     ref: SubCategory,
   },
   quantity: {
@@ -25,7 +25,7 @@ const productSchema = new Schema({
   },
   price: {
     type: Number,
-    required: true,
+    required: false,
   },
   shortdescription: {
     type: String,
@@ -33,16 +33,16 @@ const productSchema = new Schema({
   },
   description: {
     type: String,
-    default: null,
+    default: "",
     maxLength: 1000,
   },
   thumbnail: {
     type: String,
-    default: null,
+    default: "",
   },
   images: {
     type: String,
-    default: null,
+    default: "",
   },
   createdAt: {
     type: Date,

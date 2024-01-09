@@ -132,7 +132,7 @@ const AddListing = () => {
                           className="form_control"
                           placeholder="Place Name"
                           name="placeName"
-                          value={formData.name}
+                          value={formData.placeName}
                           onChange={handleChange}
                           required
                         />

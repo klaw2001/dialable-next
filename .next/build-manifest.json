@@ -15,11 +15,6 @@
     "static/development/_middlewareManifest.js"
   ],
   "pages": {
-    "/": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/index.js"
-    ],
     "/_app": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
@@ -29,6 +24,7 @@
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
+<<<<<<< HEAD
     ],
 <<<<<<< HEAD
     "/sign-up": [
@@ -41,6 +37,8 @@
       "static/chunks/main.js",
       "static/chunks/pages/listing-list.js"
 >>>>>>> ab9ca313537565b2126e3c3eeda0de4992a60c3e
+=======
+>>>>>>> cb156c348b0408ee073dfe3c9e549b9881909b8f
     ]
   },
   "ampFirstPages": []

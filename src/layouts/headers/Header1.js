@@ -5,14 +5,15 @@ import axios from "axios";
 
 const Header1 = () => {
   const [user, setUser] = useState({});
-
+  const [loggedin , setLoggedIn] = useState(false)
   useEffect(() => {
-    const userID = localStorage.getItem('userID');
-
-    axios.get(`/api/auth/get-current-user/${userID}`)
+    const userID = localStorage.getItem("userID");
+    axios
+      .get(`/api/auth/get-current-user/${userID}`)
       .then((res) => {
-        const userData = res.data.user; 
+        const userData = res.data?.user;
         setUser(userData);
+        setLoggedIn(true)
       })
       .catch((err) => console.log(err));
   }, []);
@@ -107,7 +108,7 @@ const Header1 = () => {
                   <Link href="/">
                     <a className="brand-logo">
                       <img
-                        src="assets/images/logo/logo-1.png"
+                        src="http://res.cloudinary.com/dqpj1vyjn/image/upload/v1704696575/jh8xzhfpc4vtgtpfg7fi.jpg"
                         alt="Brand Logo"
                       />
                     </a>
@@ -121,13 +122,13 @@ const Header1 = () => {
                   </div>
                   <nav className="main-menu">
                     <ul>
-                      <li className="menu-item has-children">
+                      <li className="menu-item">
                         <Link href="/">
                           <a>Home</a>
                         </Link>
-                        <ul className="sub-menu">
+                        {/* <ul className="sub-menu">
                           <Home />
-                        </ul>
+                        </ul> */}
                       </li>
                       <About />
                       <li className="menu-item has-children">
@@ -161,19 +162,43 @@ const Header1 = () => {
               <div className="col-lg-4 col-5">
                 <div className="header-right-nav">
                   <ul className="d-flex align-items-center">
-                    <li className="user-btn d-flex align-items-center" style={{gap:'10px'}}>
-                        <div className="sub-menu">
-                          <h6>Hello <a href="/profile" className="text-uppercase">{user.firstName}</a></h6>
-                          
-                        </div>
-                        <a href="/profile" className="icon">
-                          <i className="flaticon-avatar"></i>
-                        </a>
+                    <li
+                      className="user-btn d-flex align-items-center"
+                      style={{ gap: "10px" }}
+                    >
+                      <div className="sub-menu">
+                        <h6>
+                          {loggedin ? (
+                            <span>
+                              Hello{" "}
+                              <a href="/profile" className="text-uppercase">
+                                {user.firstName}
+                              </a>
+                            </span>
+                          ) : (
+                            <a href="/log-in" className="">Login</a>
+                            )}
+                        </h6>
+                      </div>
+                      {
+                        loggedin && (
+
+                      <a href="/profile" className="icon">
+                        <i className="flaticon-avatar"></i>
+                      </a>
+                        )
+                      }
                     </li>
                     <li className="hero-nav-btn">
+                      {loggedin ? (
                       <Link href="/add-listing">
                         <a className="main-btn icon-btn">Add Listing</a>
                       </Link>
+
+                      ):(
+                        <a href="/sign-up" className="main-btn icon-btn">Sign Up Now</a>
+
+                      )}
                     </li>
                     <li className="nav-toggle-btn">
                       <div className="navbar-toggler">

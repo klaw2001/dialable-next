@@ -3,10 +3,17 @@
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
 <<<<<<< HEAD
+<<<<<<< HEAD
   "/api/auth/signup": "pages/api/auth/signup.js"
 =======
   "/": "pages/index.js",
   "/api/auth/get-current-user/[id]": "pages/api/auth/get-current-user/[id].js",
   "/api/listing/get-all-listings": "pages/api/listing/get-all-listings.js"
 >>>>>>> ab9ca313537565b2126e3c3eeda0de4992a60c3e
+=======
+  "/api/products/all-products": "pages/api/products/all-products.js",
+  "/api/listing/get-all-listings": "pages/api/listing/get-all-listings.js",
+  "/api/auth/get-current-user/[id]": "pages/api/auth/get-current-user/[id].js",
+  "/api/categories/get-categories": "pages/api/categories/get-categories.js"
+>>>>>>> cb156c348b0408ee073dfe3c9e549b9881909b8f
 }
