@@ -5,16 +5,16 @@ const blogSchema = new Schema(
   {
     title: {
       type: String,
-      required: true,
+      required: false,
     },
     content: {
       type: String,
-      required: true,
+      required: false,
     },
     userID: {
       type: Schema.Types.ObjectId,
       ref: User,
-      required: true,
+      required: false,
     },
     image: {
       type: String,
@@ -37,8 +37,7 @@ const blogSchema = new Schema(
     reviews: [
       {
         user: {
-          type: Schema.Types.ObjectId,
-          ref:User
+          type: Object,
         },
         rating: {
           type: Number,

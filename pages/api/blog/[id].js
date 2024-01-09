@@ -19,9 +19,7 @@ export default async function handler(req, res) {
   if (req.method === "GET") {
     try {
       const blogID = req.query.id;
-      const blogData = await BlogD.findOne({ _id: blogID }).populate(
-        "reviews"
-      );
+      const blogData = await BlogD.findOne({ _id: blogID });
       if (blogData) {
         return res.status(200).json({
           data: blogData,

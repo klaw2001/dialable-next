@@ -1,6 +1,6 @@
 import NextCors from "nextjs-cors";
-import connectDB from "../../../../src/dbConfig/dbConfig";
 import BlogD from "../../../src/models/blogModel";
+import connectDB from "../../../src/dbConfig/dbConfig";
 
 connectDB()
   .then(() => {
@@ -21,7 +21,7 @@ export default async function POST(req, res) {
     const { userId, userComment } = req.body;
 
     // Validate the required fields
-    if (!userComment || userId) {
+    if (!userComment || !userId) {
       return res
         .status(400)
         .json({ success: false, error: "userComment or userId is missing" });
@@ -33,9 +33,11 @@ export default async function POST(req, res) {
     });
 
     const savedBlogComment = await newBlogComment.save();
+    // newBlogComment.save()
 
     return res.status(201).json({ success: true, data: savedBlogComment });
   } catch (error) {
+    console.log(error)
     return res
       .status(500)
       .json({ success: false, error: "Internal Server Error" });

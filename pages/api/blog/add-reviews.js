@@ -63,6 +63,6 @@ export default async function POST(req, res) {
       message: "Reviwed succesfully!",
     });
   } catch (error) {
-    return next(new ErrorHandler(error, 400));
+    return console.log(error);
   }
 }

@@ -47,7 +47,6 @@ const Index = () => {
   },[])
 
   const threeList = listing.slice(0,3)
-  console.log(threeList)
 
   useEffect(()=>{
     axios.get('/api/products/all-products')
@@ -68,6 +67,7 @@ const Index = () => {
       console.log(res)
     })
   },[])
+  const blogList = blogs.slice(0,3)
 
   const productsList = products.slice(0,3)
  
@@ -1417,7 +1417,7 @@ const Index = () => {
             </div>
           </div>
           <div className="row">
-            {blogs.map((elem)=>(
+            {blogList.map((elem)=>(
 
             <div className="col-lg-4 col-md-6 col-sm-12" key={elem._id}>
               <div
