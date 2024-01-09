@@ -105,3 +105,9 @@ img.mfp-img {
 .header-navigation .main-menu ul > li.has-children.active > a:after {
   color: #ff344f !important;
 }
+
+/* styles/globals.css */
+
+:focus {
+  outline: 2px solid #007bff;
+}
