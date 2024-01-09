@@ -21,7 +21,7 @@ const Header1 = () => {
 
   return (
     <header className="header-area header-area-one d-none d-xl-block">
-      <a href="#main-content" className="skip-link">
+      <a href="#main-content" className="skip-link d-none " style={{visibility:"hidden"}}>
         Skip to Content
       </a>
 
