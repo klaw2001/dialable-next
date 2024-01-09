@@ -94,7 +94,7 @@ const Products = () => {
                       </Link>
                     </h3>
                     <span className="price">
-                      $250 <span className="pre-price">${elem.price}</span>
+                    ₹{elem.price} <span className="pre-price">₹{elem.price}</span>
                     </span>
                   </div>
                 </div>

@@ -8,9 +8,32 @@ import Layout from "../src/layouts/Layout";
 import { reletedProductSlider } from "../src/sliderProps";
 import axios from "axios";
 import { useRouter } from "next/router";
+import { toast } from "react-toastify";
 
 const ProductDetails = ({productId}) => {
-  console.log(productId)
+  const [userID , setUserID] = useState(null)
+  const router = useRouter();
+
+  useEffect(() => {
+    const id = localStorage.getItem("userID");
+    setUserID(id);
+  }, []);
+  const handleCart = async (productID) => {
+    await axios
+      .post("/api/cart/add-cart", { userID, productID })
+      .then((res) => {
+        toast.success("Item added to cart successfully!");
+
+        setTimeout(() => {
+          // Navigate to the cart page after 3 seconds
+          router.push(`/cart-product/${userID}`);
+        }, 3000);
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error("Failed to add item to cart. Please try again.");
+      });
+  };
   return (
     <Layout>
       <PageBanner title={"Shop Single"} />
@@ -18,7 +41,7 @@ const ProductDetails = ({productId}) => {
         <div className="container">
           <div className="product-details-wrapper mb-30">
             <div className="row">
-              <ProductSlider />
+              <ProductSlider title={productId?.name} thumbnail={productId?.thumbnail}/>
               <div className="col-lg-4 col-md-12">
                 <div className="product-info mt-30">
                   <ul className="ratings ratings-three">
@@ -62,9 +85,9 @@ const ProductDetails = ({productId}) => {
                       </div>
                     </div>
                     <div className="cart-button">
-                      <a href="#" className="main-btn">
+                      <button onClick={()=>handleCart(productId._id)} className="main-btn">
                         Add to Cart
-                      </a>
+                      </button>
                     </div>
                   </div>
                   <div className="product-meta">
@@ -80,7 +103,6 @@ const ProductDetails = ({productId}) => {
                     </span>
                     <span className="category">
                       <span className="title">Category:</span>
-                      <a href="#">{productId?.subcategory?.name}</a>,
                       <a href="#">{productId?.category?.name}</a>
                       
                     </span>
@@ -182,7 +204,7 @@ const ProductDetails = ({productId}) => {
                             <li className="review">
                               <div className="review-thumb">
                                 <img
-                                  src="assets/images/products/review-thumb-2.jpg"
+                                  src={productId?.thumbnail}
                                   alt="review thumb"
                                 />
                               </div>

@@ -5,6 +5,8 @@ import Footer from "./Footer";
 import Header from "./headers/Header";
 import MobileMenu from "./MobileMenu";
 import ScrollTop from "./ScrollTop";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Layout = ({ children, header }) => {
   useEffect(() => {
@@ -16,6 +18,16 @@ const Layout = ({ children, header }) => {
 
   return (
     <Fragment>
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <ImageView />
       <MobileMenu />
       <Header header={header} />

@@ -26,9 +26,9 @@ const CartSchema = new Schema(
       type: Number,
       required: true,
     },
-    thumbnail: {
-      type: String,
-    },
+    // thumbnail: {
+    //   type: String,
+    // },
   },
   {
     timestamps: true,

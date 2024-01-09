@@ -1,6 +1,6 @@
 import NextCors from "nextjs-cors";
-import connectDB from "../../../../src/dbConfig/dbConfig.js";
 import Cart from "../../../src/models/cartModel.js";
+import connectDB from "../../../src/dbConfig/dbConfig.js";
 connectDB()
   .then(() => {
     console.log("connected");
@@ -18,13 +18,13 @@ export default async function handler(req, res) {
 
   if (req.method === "GET") {
     try {
-      const userID = req.params.user_id;
-      const cartData = await Cart.find({ userID: userID });
+      const userID = req.query.id;
+      const cartData = await Cart.find({ userID: userID }).populate('productID');
       if (cartData) {
         return res.status(200).json({
           data: cartData,
           message: "Success",
-          customers: customers,
+          // customers: customers,
         });
       }
     } catch (error) {
@@ -34,7 +34,7 @@ export default async function handler(req, res) {
     }
   } else if (req.method === "PUT" || req.method === "PATCH") {
     try {
-      const cartID = req.params.cart_id;
+      const cartID = req.query.id;
       const { updatetype } = req.query;
       const cartData = await Cart.findOne({ _id: cartID });
 
@@ -68,7 +68,7 @@ export default async function handler(req, res) {
     }
   } else if (req.method === "DELETE") {
     try {
-      const cartID = req.params.cart_id;
+      const cartID = req.query.id;
 
       const deletedItem = await Cart.deleteOne({ _id: cartID });
       if (deletedItem.acknowledged) {

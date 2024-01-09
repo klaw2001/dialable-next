@@ -1,6 +1,7 @@
 import NextCors from "nextjs-cors";
-import connectDB from "../../../../src/dbConfig/dbConfig.js";
 import Cart from "../../../src/models/cartModel.js";
+import connectDB from "../../../src/dbConfig/dbConfig.js";
+import Product from "../../../src/models/productModel.js";
 connectDB()
   .then(() => {
     console.log("connected");
@@ -18,8 +19,7 @@ export default async function POST(req, res) {
 
   try {
     const { userID, productID } = req.body;
-    const proData = await productModel.findOne({ _id: productID });
-
+    const proData = await Product.findOne({ _id: productID });
     const existCartItem = await Cart.findOne({
       productID: productID,
       userID: userID,
@@ -50,6 +50,7 @@ export default async function POST(req, res) {
       quantity: 1,
       thumbnail: proData.thumbnail,
     });
+
     cartData.save();
     console.log(cartData);
     if (cartData) {

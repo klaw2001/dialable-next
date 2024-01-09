@@ -46,6 +46,8 @@ export default class ProductSlider extends Component {
   }
 
   render() {
+    const { thumbnail , title } = this.props;
+
     return (
       <Fragment>
         <div className="col-lg-2 col-md-3">
@@ -57,26 +59,26 @@ export default class ProductSlider extends Component {
           >
             <div className="single-thumb-item">
               <img
-                src="assets/images/products/products-thumbs-1.jpg"
-                alt="products image"
+                src={thumbnail}
+                alt={title}
               />
             </div>
             <div className="single-thumb-item">
-              <img
-                src="assets/images/products/products-thumbs-2.jpg"
-                alt="products image"
+            <img
+                src={thumbnail}
+                alt={title}
               />
             </div>
             <div className="single-thumb-item">
-              <img
-                src="assets/images/products/products-thumbs-3.jpg"
-                alt="products image"
+            <img
+                src={thumbnail}
+                alt={title}
               />
             </div>
             <div className="single-thumb-item">
-              <img
-                src="assets/images/products/products-thumbs-2.jpg"
-                alt="products image"
+            <img
+                src={thumbnail}
+                alt={title}
               />
             </div>
           </Slider>
@@ -91,13 +93,24 @@ export default class ProductSlider extends Component {
           >
             <div className="single-gallery-item">
               <a
+                href={thumbnail}
+                className="img-popup"
+              >
+               <img
+                src={thumbnail}
+                alt={title}
+              />
+              </a>
+            </div>
+            <div className="single-gallery-item">
+              <a
                 href="assets/images/products/products-big-1.jpg"
                 className="img-popup"
               >
-                <img
-                  src="assets/images/products/products-big-1.jpg"
-                  alt="Image"
-                />
+               <img
+                src={thumbnail}
+                alt={title}
+              />
               </a>
             </div>
             <div className="single-gallery-item">
@@ -106,9 +119,9 @@ export default class ProductSlider extends Component {
                 className="img-popup"
               >
                 <img
-                  src="assets/images/products/products-big-1.jpg"
-                  alt="Image"
-                />
+                src={thumbnail}
+                alt={title}
+              />
               </a>
             </div>
             <div className="single-gallery-item">
@@ -116,21 +129,10 @@ export default class ProductSlider extends Component {
                 href="assets/images/products/products-big-1.jpg"
                 className="img-popup"
               >
-                <img
-                  src="assets/images/products/products-big-1.jpg"
-                  alt="Image"
-                />
-              </a>
-            </div>
-            <div className="single-gallery-item">
-              <a
-                href="assets/images/products/products-big-1.jpg"
-                className="img-popup"
-              >
-                <img
-                  src="assets/images/products/products-big-1.jpg"
-                  alt="Image"
-                />
+               <img
+                src={thumbnail}
+                alt={title}
+              />
               </a>
             </div>
           </Slider>

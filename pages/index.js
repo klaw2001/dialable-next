@@ -15,62 +15,80 @@ import {
   PlaceSliderOne,
 } from "../src/sliderProps";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const Index = () => {
   const [video, setVideo] = useState(false);
-  const [categoryList , setCategoryList] = useState([])
-  const [listing , setListing] = useState([])
-  const [products , setProducts] = useState([])
-  const [blogs , setBlogs] = useState([])
+  const [categoryList, setCategoryList] = useState([]);
+  const [listing, setListing] = useState([]);
+  const [products, setProducts] = useState([]);
+  const [blogs, setBlogs] = useState([]);
+  const [userID, setUserID] = useState(null);
 
   useEffect(() => {
-    axios.get('/api/listing/get-all-listings')
+    axios
+      .get("/api/listing/get-all-listings")
       .then((res) => {
-        
-  
         setListing(res.data.data);
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
-  useEffect(()=>{
-    axios.get('/api/categories/get-categories')
-    .then((res) => {
-      
+  useEffect(() => {
+    axios
+      .get("/api/categories/get-categories")
+      .then((res) => {
+        setCategoryList(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
-      setCategoryList(res.data.data);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-  },[])
+  const threeList = listing.slice(0, 3);
 
-  const threeList = listing.slice(0,3)
+  useEffect(() => {
+    axios
+      .get("/api/products/all-products")
+      .then((res) => {
+        setProducts(res.data.data);
+      })
+      .catch((res) => {
+        console.log(res);
+      });
+  }, []);
 
-  useEffect(()=>{
-    axios.get('/api/products/all-products')
-    .then((res)=>{
-      setProducts(res.data.data)
-    })
-    .catch((res)=>{
-      console.log(res)
-    })
-  },[])
+  useEffect(() => {
+    axios
+      .get("api/blog/get-all-blogs")
+      .then((res) => {
+        setBlogs(res.data.data);
+      })
+      .catch((res) => {
+        console.log(res);
+      });
+  }, []);
+  const blogList = blogs.slice(0, 3);
 
-  useEffect(()=>{
-    axios.get('api/blog/get-all-blogs')
-    .then((res)=>{
-      setBlogs(res.data.data)
-    })
-    .catch((res)=>{
-      console.log(res)
-    })
-  },[])
-  const blogList = blogs.slice(0,3)
+  const productsList = products.slice(0, 3);
 
-  const productsList = products.slice(0,3)
- 
+  useEffect(() => {
+    const id = localStorage.getItem("userID");
+    setUserID(id);
+  }, []);
+  const handleCart = async (productID) => {
+    await axios
+      .post("/api/cart/add-cart", { userID, productID })
+      .then((res) => {
+        toast.success("Item added to cart successfully!");
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error("Failed to add item to cart. Please try again.");
+      });
+  };
+
   return (
     <Layout>
       {video && <VideoPopup close={setVideo} />}
@@ -81,16 +99,11 @@ const Index = () => {
             <div className="row">
               <div className="col-lg-8">
                 <div className="hero-content">
-                  <h1 className="wow fadeInUp">
-                    Dream Explore Discover
-                  </h1>
+                  <h1 className="wow fadeInUp">Dream Explore Discover</h1>
                   <h2 className="wow fadeInDown">
                     People Don’t Take,Trips Take People
                   </h2>
-                  <div
-                    className="hero-search-wrapper wow fadeInUp"
-                   
-                  >
+                  <div className="hero-search-wrapper wow fadeInUp">
                     <form onSubmit={(e) => e.preventDefault()}>
                       <div className="row">
                         <div className="col-lg-5 col-md-4 col-sm-12">
@@ -253,84 +266,81 @@ const Index = () => {
             </div>
           </div>
           <div className="row">
-            {threeList.map((elem)=>(
-
-            <div className="col-lg-4 col-md-6 col-sm-12" key={elem._id}>
-              <div
-                className="listing-item listing-grid-one mb-45 wow fadeInUp"
-              >
-                <div className="listing-thumbnail">
-                  <img
-                    src={elem.thumbnail}
-                    alt="Listing Image"
-                    className="w-100"
-                  />
-                  <span className="featured-btn">Featured</span>
-                  <div className="thumbnail-meta d-flex justify-content-between align-items-center">
-                    <div className="meta-icon-title d-flex align-items-center">
-                      <div className="icon">
-                        <i className="flaticon-chef"></i>
+            {threeList.map((elem) => (
+              <div className="col-lg-4 col-md-6 col-sm-12" key={elem._id}>
+                <div className="listing-item listing-grid-one mb-45 wow fadeInUp">
+                  <div className="listing-thumbnail">
+                    <img
+                      src={elem.thumbnail}
+                      alt="Listing Image"
+                      className="w-100"
+                    />
+                    <span className="featured-btn">Featured</span>
+                    <div className="thumbnail-meta d-flex justify-content-between align-items-center">
+                      <div className="meta-icon-title d-flex align-items-center">
+                        <div className="icon">
+                          <i className="flaticon-chef"></i>
+                        </div>
+                        <div className="title">
+                          <h6>{elem.category?.name}</h6>
+                        </div>
                       </div>
-                      <div className="title">
-                        <h6>{elem.category?.name}</h6>
-                      </div>
+                      <span className="status st-open">Open</span>
                     </div>
-                    <span className="status st-open">Open</span>
                   </div>
-                </div>
-                <div className="listing-content">
-                  <h3 className="title">
-                    <Link href={`sin-listings/${elem._id}`}>
-                      <a>{elem.placeName}</a>
-                    </Link>
-                  </h3>
-                  <div className="ratings">
-                    <ul className="ratings ratings-three">
-                      <li className="star">
-                        <i className="flaticon-star-1"></i>
-                      </li>
-                      <li className="star">
-                        <i className="flaticon-star-1"></i>
-                      </li>
-                      <li className="star">
-                        <i className="flaticon-star-1"></i>
-                      </li>
-                      <li className="star">
-                        <i className="flaticon-star-1"></i>
-                      </li>
-                      <li className="star">
-                        <i className="flaticon-star-1"></i>
-                      </li>
-                      <li>
-                        <span>
-                          <a href="#">(02 Reviews)</a>
-                        </span>
-                      </li>
-                    </ul>
-                  </div>
-                  <span className="price">$05.00 - $80.00</span>
-                  <span className="phone-meta">
-                    <i className="ti-tablet"></i>
-                    <a href="tel:+982653652-05">+98 (265) 3652 - 05</a>
-                  </span>
-                  <div className="listing-meta">
-                    <ul>
-                      <li>
-                        <span>
-                          <i className="ti-location-pin"></i>California, USA
-                        </span>
-                      </li>
-                      <li>
-                        <span>
-                          <i className="ti-heart"></i>
-                          <a href="#">Save</a>
-                        </span>
-                      </li>
-                    </ul>
+                  <div className="listing-content">
+                    <h3 className="title">
+                      <Link href={`sin-listings/${elem._id}`}>
+                        <a>{elem.placeName}</a>
+                      </Link>
+                    </h3>
+                    <div className="ratings">
+                      <ul className="ratings ratings-three">
+                        <li className="star">
+                          <i className="flaticon-star-1"></i>
+                        </li>
+                        <li className="star">
+                          <i className="flaticon-star-1"></i>
+                        </li>
+                        <li className="star">
+                          <i className="flaticon-star-1"></i>
+                        </li>
+                        <li className="star">
+                          <i className="flaticon-star-1"></i>
+                        </li>
+                        <li className="star">
+                          <i className="flaticon-star-1"></i>
+                        </li>
+                        <li>
+                          <span>
+                            <a href="#">(02 Reviews)</a>
+                          </span>
+                        </li>
+                      </ul>
+                    </div>
+                    <span className="price">$05.00 - $80.00</span>
+                    <span className="phone-meta">
+                      <i className="ti-tablet"></i>
+                      <a href="tel:+982653652-05">+98 (265) 3652 - 05</a>
+                    </span>
+                    <div className="listing-meta">
+                      <ul>
+                        <li>
+                          <span>
+                            <i className="ti-location-pin"></i>California, USA
+                          </span>
+                        </li>
+                        <li>
+                          <span>
+                            <i className="ti-heart"></i>
+                            <a href="#">Save</a>
+                          </span>
+                        </li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
             ))}
             {/* <div className="col-lg-4 col-md-6 col-sm-12">
               <div
@@ -743,20 +753,24 @@ const Index = () => {
             <div className="row">
               <div className="col-lg-6">
                 <div className="features-img wow fadeInLeft">
-                  <img
-                    src="assets/images/about-us.jpeg"
-                    alt="Features Image"
-                  />
+                  <img src="assets/images/about-us.jpeg" alt="Features Image" />
                 </div>
               </div>
               <div className="col-lg-6">
                 <div className="features-content-box features-content-box-one">
                   <div className="section-title section-title-left mb-25 wow fadeInUp">
                     <span className="sub-title">Our Speciality</span>
-                    <h2>One-Stop for All Local Businesses, Services, & Stores Nearby Across India</h2>
+                    <h2>
+                      One-Stop for All Local Businesses, Services, & Stores
+                      Nearby Across India
+                    </h2>
                   </div>
                   <h5>
-                  Welcome to Dialable, your one stop shop where you are assisted with day-to-day and exclusive planning and purchasing activities. We take pride in our iconic customer support number, 8888888888 and the fact that we own a strong hold on local business information pan India.
+                    Welcome to Dialable, your one stop shop where you are
+                    assisted with day-to-day and exclusive planning and
+                    purchasing activities. We take pride in our iconic customer
+                    support number, 8888888888 and the fact that we own a strong
+                    hold on local business information pan India.
                   </h5>
                   <ul className="features-list-one">
                     <li
@@ -769,7 +783,8 @@ const Index = () => {
                       <div className="content">
                         <h5>Find What You Want</h5>
                         <p>
-                        Elevate your search for B2B requisites. From lead generation to promoting and selling products/services.
+                          Elevate your search for B2B requisites. From lead
+                          generation to promoting and selling products/services.
                         </p>
                       </div>
                     </li>
@@ -783,7 +798,8 @@ const Index = () => {
                       <div className="content">
                         <h5>Easy Choose Your Place</h5>
                         <p>
-                        Experience the ultimate B2B portal by Dialable. You can explore countless diverse categories.
+                          Experience the ultimate B2B portal by Dialable. You
+                          can explore countless diverse categories.
                         </p>
                       </div>
                     </li>
@@ -825,24 +841,28 @@ const Index = () => {
             {...PlaceSliderOne}
             className="place-slider-one wow fadeInDown"
           >
-            {categoryList?.map((elem)=>(
-
-            <div className="place-item place-item-one" key={elem._id}>
-              <div className="place-thumbnail">
-                <img src={elem.image} alt="Place Image" className="object-fit-contain" style={{height:'300px' , objectFit:'contain'}}/>
-                <div className="place-overlay">
-                  <div className="place-content text-center">
-                    <span className="listing">10 Listing</span>
-                    <h3 className="title">Australia</h3>
-                    <Link href="/listing-grid">
-                      <a className="arrow-btn">
-                        <i className="ti-arrow-right"></i>
-                      </a>
-                    </Link>
+            {categoryList?.map((elem) => (
+              <div className="place-item place-item-one" key={elem._id}>
+                <div className="place-thumbnail">
+                  <img
+                    src={elem.image}
+                    alt="Place Image"
+                    className="object-fit-contain"
+                    style={{ height: "300px", objectFit: "contain" }}
+                  />
+                  <div className="place-overlay">
+                    <div className="place-content text-center">
+                      <span className="listing">10 Listing</span>
+                      <h3 className="title">Australia</h3>
+                      <Link href="/listing-grid">
+                        <a className="arrow-btn">
+                          <i className="ti-arrow-right"></i>
+                        </a>
+                      </Link>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
             ))}
             {/* <div className="place-item place-item-one">
               <div className="place-thumbnail">
@@ -1106,52 +1126,59 @@ const Index = () => {
             {...ListingSliderOne}
             className="listing-slider-one wow fadeInDown"
           >
-            {productsList.map((elem)=>(
+            {productsList.map((elem) => (
+              <div
+                className="listing-item listing-grid-item-two"
+                key={elem._id}
+              >
+                <div className="listing-thumbnail">
+                  <img src={elem.thumbnail} alt={elem.name} />
 
-            <div className="listing-item listing-grid-item-two" key={elem._id}>
-              <div className="listing-thumbnail">
-                <img
-                  src={elem.thumbnail}
-                  alt={elem.name}
-                />
-                
-                <span className="featured-btn">{elem.category.name}</span>
-                <ul className="ratings ratings-four">
-                  <li className="star">
-                    <i className="flaticon-star-1"></i>
-                  </li>
-                  <li className="star">
-                    <i className="flaticon-star-1"></i>
-                  </li>
-                  <li className="star">
-                    <i className="flaticon-star-1"></i>
-                  </li>
-                  <li className="star">
-                    <i className="flaticon-star-1"></i>
-                  </li>
-                  <li className="star">
-                    <i className="flaticon-star-1"></i>
-                  </li>
-                  <li>
-                    <span>
-                      <a href="#">(02 Reviews)</a>
-                    </span>
-                  </li>
-                </ul>
-              </div>
-              <div className="listing-content">
-                <h3 className="title">
-                  <Link href={`/products/${elem._id}`}>
-                    <a>{elem.name}</a>
-                  </Link>
-                </h3>
-                <p className="text-truncate">{elem.shortdescription}</p>
-                <span className="phone-meta">
-                  <i className="ti-tablet"></i>
-                  <span className="price">Price : ₹{elem.price}</span>
-                  <span className="status st-open">SALE</span>
-                </span>
-                {/* <div className="listing-meta">
+                  <span className="featured-btn">{elem.category.name}</span>
+                  <ul className="ratings ratings-four">
+                    <li className="star">
+                      <i className="flaticon-star-1"></i>
+                    </li>
+                    <li className="star">
+                      <i className="flaticon-star-1"></i>
+                    </li>
+                    <li className="star">
+                      <i className="flaticon-star-1"></i>
+                    </li>
+                    <li className="star">
+                      <i className="flaticon-star-1"></i>
+                    </li>
+                    <li className="star">
+                      <i className="flaticon-star-1"></i>
+                    </li>
+                    <li>
+                      <span>
+                        <a href="#">(02 Reviews)</a>
+                      </span>
+                    </li>
+                  </ul>
+                </div>
+                <div className="listing-content">
+                  <h3 className="title">
+                    <Link href={`/products/${elem._id}`}>
+                      <a>{elem.name}</a>
+                    </Link>
+                  </h3>
+                  <p className="text-truncate">{elem.shortdescription}</p>
+                  <span className="phone-meta d-flex justify-content-between">
+                    <div>
+                      <i className="ti-tablet"></i>
+                      <span className="price">Price : ₹{elem.price}</span>
+                    </div>
+
+                    <button
+                      className="status st-open featured-btn bg-success"
+                      onClick={() => handleCart(elem._id)}
+                    >
+                      SALE
+                    </button>
+                  </span>
+                  {/* <div className="listing-meta">
                   <ul>
                     <li>
                       <span>
@@ -1166,8 +1193,8 @@ const Index = () => {
                     </li>
                   </ul>
                 </div> */}
+                </div>
               </div>
-            </div>
             ))}
             {/* <div className="listing-item listing-grid-item-two">
               <div className="listing-thumbnail">
@@ -1355,8 +1382,6 @@ const Index = () => {
       </section>
       {/* <!--====== End Popular Listing Section ======--> */}
 
-      
-      
       {/* <!--====== Start Client Section ======--> */}
       <section className="client-area pt-120">
         <div className="client-wrapper-one pb-120">
@@ -1417,58 +1442,57 @@ const Index = () => {
             </div>
           </div>
           <div className="row">
-            {blogList.map((elem)=>(
-
-            <div className="col-lg-4 col-md-6 col-sm-12" key={elem._id}>
-              <div
-                className="blog-post-item blog-post-item-one mb-40 wow fadeInUp"
-                data-wow-delay="10ms"
-              >
-                <div className="post-thumbnail">
-                  <Link href="/blog-details">
-                    <a>
-                      <img
-                        src={elem.image}
-                        alt="Blog Image"
-                      />
-                    </a>
-                  </Link>
-                  <div className="post-date">
-                    <a href="#">
-                      20 <span>Oct</span>
-                    </a>
-                  </div>
-                </div>
-                <div className="entry-content">
-                  <a href="#" className="cat-btn">
-                    <i className="ti-bookmark-alt"></i>Tours & Travel
-                  </a>
-                  <h3 className="title overflow-hidden" style={{height:'90px'}}>
-                    <Link href={`/blog-single/${elem._id}`}>
-                      <a className="">{elem.title}</a>
+            {blogList.map((elem) => (
+              <div className="col-lg-4 col-md-6 col-sm-12" key={elem._id}>
+                <div
+                  className="blog-post-item blog-post-item-one mb-40 wow fadeInUp"
+                  data-wow-delay="10ms"
+                >
+                  <div className="post-thumbnail">
+                    <Link href="/blog-details">
+                      <a>
+                        <img src={elem.image} alt="Blog Image" />
+                      </a>
                     </Link>
-                  </h3>
-                  <div className="post-meta">
-                    <ul>
-                      <li>
-                        <span>
-                          <i className="ti-comments-smiley"></i>
-                          <a href="#">0 Comment</a>
-                        </span>
-                      </li>
-                      <li>
-                        <span>
-                          <i className="ti-id-badge"></i>
-                          <a href="#">By admin</a>
-                        </span>
-                      </li>
-                    </ul>
+                    <div className="post-date">
+                      <a href="#">
+                        20 <span>Oct</span>
+                      </a>
+                    </div>
+                  </div>
+                  <div className="entry-content">
+                    <a href="#" className="cat-btn">
+                      <i className="ti-bookmark-alt"></i>Tours & Travel
+                    </a>
+                    <h3
+                      className="title overflow-hidden"
+                      style={{ height: "90px" }}
+                    >
+                      <Link href={`/blog-single/${elem._id}`}>
+                        <a className="">{elem.title}</a>
+                      </Link>
+                    </h3>
+                    <div className="post-meta">
+                      <ul>
+                        <li>
+                          <span>
+                            <i className="ti-comments-smiley"></i>
+                            <a href="#">0 Comment</a>
+                          </span>
+                        </li>
+                        <li>
+                          <span>
+                            <i className="ti-id-badge"></i>
+                            <a href="#">By admin</a>
+                          </span>
+                        </li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
             ))}
-            
+
             {/* <div className="col-lg-4 col-md-6 col-sm-12">
               <div
                 className="blog-post-item blog-post-item-one mb-40 wow fadeInUp"
