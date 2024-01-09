@@ -11,7 +11,7 @@ const Header1 = () => {
     axios
       .get(`/api/auth/get-current-user/${userID}`)
       .then((res) => {
-        const userData = res.data.user;
+        const userData = res.data?.user;
         setUser(userData);
         setLoggedIn(true)
       })
@@ -122,13 +122,13 @@ const Header1 = () => {
                   </div>
                   <nav className="main-menu">
                     <ul>
-                      <li className="menu-item has-children">
+                      <li className="menu-item">
                         <Link href="/">
                           <a>Home</a>
                         </Link>
-                        <ul className="sub-menu">
+                        {/* <ul className="sub-menu">
                           <Home />
-                        </ul>
+                        </ul> */}
                       </li>
                       <About />
                       <li className="menu-item has-children">

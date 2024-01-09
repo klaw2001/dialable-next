@@ -16,6 +16,7 @@ const Header = ({ header }) => {
       default:
         return <Header1 />;
     }
+
   };
   return <Fragment>{getHeader()}</Fragment>;
 };

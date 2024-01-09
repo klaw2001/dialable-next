@@ -807,7 +807,7 @@ const Index = () => {
             {...PlaceSliderOne}
             className="place-slider-one wow fadeInDown"
           >
-            {categoryList.map((elem)=>(
+            {categoryList?.map((elem)=>(
 
             <div className="place-item place-item-one" key={elem._id}>
               <div className="place-thumbnail">
