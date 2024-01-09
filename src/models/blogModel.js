@@ -20,9 +20,17 @@ const blogSchema = new Schema(
       type: String,
       default: null,
     },
-    comments: {
-      type: String,
-    },
+    comments: [
+      {
+        userId: {
+          type: Schema.Types.ObjectId,
+          ref: User,
+        },
+        userComment: {
+          type: String,
+        },
+      },
+    ],
     tags: {
       type: String,
     },
