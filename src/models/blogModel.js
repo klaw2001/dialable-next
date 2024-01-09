@@ -20,6 +20,26 @@ const blogSchema = new Schema(
       type: String,
       default: null,
     },
+    reviews: [
+      {
+        user: {
+          type: Object,
+        },
+        rating: {
+          type: Number,
+        },
+        comment: {
+          type: String,
+        },
+        blogID: {
+          type: String,
+        },
+        createdAt: {
+          type: Date,
+          default: Date.now(),
+        },
+      },
+    ],
   },
   { timestamps: true }
 );
