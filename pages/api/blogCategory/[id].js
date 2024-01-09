@@ -1,6 +1,6 @@
 import NextCors from "nextjs-cors";
-import connectDB from "../../../../src/dbConfig/dbConfig";
 import BlogCategory from "../../../src/models/blogCategoryModel";
+import connectDB from "../../../src/dbConfig/dbConfig";
 connectDB()
   .then(() => {
     console.log("connected");

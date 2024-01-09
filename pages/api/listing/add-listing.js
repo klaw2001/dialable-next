@@ -71,9 +71,9 @@ export default async function POST(req, res) {
 }
 
 const validationError = listingData.validateSync();
-if (validationError) {
+if (validationError) 
   return res.status(400).json({ message: validationError.message });
-}
+
 
 listingData.save();
 if (listingData) {
