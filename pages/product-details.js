@@ -92,7 +92,7 @@ const ProductDetails = ({productId}) => {
                         Add to Cart
                       </button>
                       ):(
-                        <a href="/sign-up" className="main-btn">Sign Up</a>
+                        <Link href="/sign-up" className="main-btn">Sign Up</Link>
                       )}
                     </div>
                   </div>
