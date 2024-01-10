@@ -36,8 +36,8 @@ const ListingDetails1 = () => {
                   <div className="info-name d-flex">
                     <div className="thumb">
                       <img
-                        src="assets/images/listing/info-1.jpg"
-                        alt="thumb image"
+                        src={listing?.thumbnail}
+                        alt={listing?.name}
                       />
                     </div>
                     <div className="content">

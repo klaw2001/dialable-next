@@ -29,7 +29,7 @@ const userSchema = new mongoose.Schema(
       type: String,
       enum: ["ADMIN", "VENDER", "CUSTOMER"],
       default: "CUSTOMER",
-      required: true,
+      required: false,
     },
     password: {
       type: String,

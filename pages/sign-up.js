@@ -7,6 +7,9 @@ import { Container } from "react-bootstrap";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { toast } from "react-toastify";
+
+
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const NAME_REGEX = /^[A-Za-z]+$/;
@@ -87,13 +90,17 @@ const Register = () => {
           headers: { "Content-Type": "application/json" },
           withCredentials: true,
         }
-      );
+      ).then((res)=>{
+        toast.success('Signed Up Successfully !')
+        
+      });
 
       // console.log(response?.data);
       // console.log(response?.accessToken);
       // console.log(JSON.stringify(response));
-
+      
       setSuccess(true);
+      
 
       setEmail("");
       setFirstName("");
@@ -245,12 +252,12 @@ const Register = () => {
                     <button
                       className="main-btn icon-btn"
                       type="submit"
-                      disabled={
-                        !validEmail ||
-                        !validFirstName ||
-                        !validLastName ||
-                        !validPwd
-                      }
+                      // disabled={
+                      //   !validEmail ||
+                      //   !validFirstName ||
+                      //   !validLastName ||
+                      //   !validPwd
+                      // }
                     >
                       Sign Up
                     </button>

@@ -132,9 +132,9 @@ const Index = () => {
                         </div>
                         <div className="col-lg-3 col-md-4 col-sm-12">
                           <div className="form_group">
-                            <button className="main-btn icon-btn">
+                            <a href="/listing-list" className="main-btn icon-btn">
                               Search Now
-                            </button>
+                            </a>
                           </div>
                         </div>
                       </div>

@@ -85,9 +85,15 @@ const ProductDetails = ({productId}) => {
                       </div>
                     </div>
                     <div className="cart-button">
+
+                      {userID ? (
+
                       <button onClick={()=>handleCart(productId._id)} className="main-btn">
                         Add to Cart
                       </button>
+                      ):(
+                        <a href="/sign-up" className="main-btn">Sign Up</a>
+                      )}
                     </div>
                   </div>
                   <div className="product-meta">

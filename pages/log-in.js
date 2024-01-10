@@ -5,6 +5,8 @@ import PageBanner from "../src/components/PageBanner";
 import { Container } from "react-bootstrap";
 import Image from "next/image";
 import Link from "next/link";
+import { toast } from "react-toastify";
+import { useRouter } from "next/router";
 
 const LOGIN_URL = "/api/auth/login";
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -14,6 +16,7 @@ const Login = () => {
   const emailRef = useRef();
   const pwdRef = useRef();
   const errRef = useRef();
+  const router = useRouter()
 
   const [email, setEmail] = useState("");
   const [pwd, setPwd] = useState("");
@@ -23,7 +26,7 @@ const Login = () => {
   const [success, setSuccess] = useState(false);
 
   useEffect(() => {
-    emailRef.current.focus();
+    emailRef?.current?.focus();
   }, []);
 
   useEffect(() => {
@@ -34,9 +37,9 @@ const Login = () => {
     setValidPwd(PWD_REGEX.test(pwd));
   }, [pwd]);
 
-  useEffect(() => {
-    setErrMsg("");
-  }, [email, pwd]);
+  // useEffect(() => {
+  //   setErrMsg("");
+  // }, [email, pwd]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -63,24 +66,26 @@ const Login = () => {
         localStorage.setItem("token",res.data.token)
         localStorage.setItem("userID",res.data.data._id)
 
-        console.log(response?.data);
-        console.log(response?.accessToken);
-        console.log(JSON.stringify(response));
-  
+        toast.success('Logged in Successfully!')
+        setTimeout(() => {
+          router.push('/')
+        }, 3000);
         setSuccess(true);
   
         setEmail("");
         setPwd("");
-      });
+      })
       
 
     } catch (err) {
+      console.error(err);  // Add this line to log the error object to the console
+
       if (!err?.response) {
-        setErrMsg("No Server Response");
+        toast.error("No Server Response");
       } else if (err.response?.status === 401) {
-        setErrMsg("Invalid Email or Password");
+        toast.error("Invalid Email or Password");
       } else {
-        setErrMsg("Login Failed");
+        toast.error(errMsg);
       }
       errRef.current.focus();
     }
@@ -111,6 +116,7 @@ const Login = () => {
                 aria-live="assertive"
               >
                 {errMsg}
+                {/* {toast.error(errMsg)} */}
               </p>
               <h4 className="title">Login At Dialable</h4>
               <div className="row">
