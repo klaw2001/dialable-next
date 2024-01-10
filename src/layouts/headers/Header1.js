@@ -6,7 +6,7 @@ import axios from "axios";
 const Header1 = () => {
   const [user, setUser] = useState({});
   const [loggedin, setLoggedIn] = useState(false);
-
+  const [cartItems , setCartItems] = useState([])
   useEffect(() => {
     const userID = localStorage.getItem("userID");
     axios
@@ -18,6 +18,20 @@ const Header1 = () => {
       })
       .catch((err) => console.log(err));
   }, []);
+
+  const id = user._id
+
+  useEffect(()=>{
+    axios.get(`/api/cart/${id}`)
+    .then((res)=>{
+      setCartItems(res.data.data)
+    })
+    .catch((err)=>{
+      console.log(err)
+    })
+  },[])
+
+  const number = cartItems.length
 
   return (
     <header className="header-area header-area-one d-none d-xl-block">
@@ -92,10 +106,12 @@ const Header1 = () => {
                     </Link>
                   </li>
                   <li>
-                    <Link href="/">
+                    <Link href={`/cart-product/${id}`}>
                       <a aria-label="Cart">
                         <i className="ti-shopping-cart"></i>
                         <span>Cart</span>
+                        {number > 0 && <span className="badge bg-danger mx-1 text-light" style={{fontSize:"14px"}}>{number}</span>}
+
                       </a>
                     </Link>
                   </li>

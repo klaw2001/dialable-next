@@ -210,7 +210,7 @@ const CartPage = () => {
                         <div className="row">
                           <div className="col-md-3 text-left rounded-2">
                             <img
-                              src={elem.thumbnail}
+                              src={elem.productID.thumbnail}
                               alt={elem.name}
                               className="img-fluid d-none d-md-block rounded-4 mb-2 shadow "
                             />
