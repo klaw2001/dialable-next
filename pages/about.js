@@ -306,13 +306,13 @@ const About = () => {
       </section>
       {/*====== End Newsletter Section ======*/}
       {/*====== Start Team Section ======*/}
-      <section className="team-area pt-115 pb-85">
+      <section className="e-commerce-area pt-115 pb-85">
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-lg-6">
               <div className="section-title text-center mb-50 wow fadeInUp">
-                <span className="sub-title">Team Member</span>
-                <h2>Meet Our Executive</h2>
+                <span className="sub-title">Inclusive Shopping</span>
+                <h2>Unlocking Experiences</h2>
               </div>
             </div>
           </div>
@@ -320,7 +320,10 @@ const About = () => {
             <div className="col-lg-4 col-md-6 col-sm-12">
               <div className="team-item team-item-one mb-30 wow fadeInUp">
                 <div className="team-img">
-                  <img src="assets/images/team/team-1.jpg" alt="Team Image" />
+                  <img
+                    src="https://images.unsplash.com/photo-1511556820780-d912e42b4980?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    alt="product image 1"
+                  />
                   <div className="team-social">
                     <ul className="social-link">
                       <li>
@@ -347,8 +350,8 @@ const About = () => {
                   </div>
                 </div>
                 <div className="team-info text-center">
-                  <h3 className="title">Alesha Mature</h3>
-                  <span className="position">Sr. Executive</span>
+                  <h3 className="title"></h3>
+                  <span className="position"></span>
                 </div>
               </div>
             </div>
@@ -358,7 +361,10 @@ const About = () => {
                 data-wow-delay="20ms"
               >
                 <div className="team-img">
-                  <img src="assets/images/team/team-2.jpg" alt="Team Image" />
+                  <img
+                    src="https://images.unsplash.com/photo-1531347387918-af516d1e939c?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    alt="product image 2"
+                  />
                   <div className="team-social">
                     <ul className="social-link">
                       <li>
@@ -385,15 +391,18 @@ const About = () => {
                   </div>
                 </div>
                 <div className="team-info text-center">
-                  <h3 className="title">Martyn Decode</h3>
-                  <span className="position">Sr. Executive</span>
+                  <h3 className="title"></h3>
+                  <span className="position"></span>
                 </div>
               </div>
             </div>
             <div className="col-lg-4 col-md-6 col-sm-12">
               <div className="team-item team-item-one mb-30 wow fadeInUp">
                 <div className="team-img">
-                  <img src="assets/images/team/team-3.jpg" alt="Team Image" />
+                  <img
+                    src="https://images.unsplash.com/photo-1631125915902-d8abe9225ff2?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    alt="Team Member 3"
+                  />
                   <div className="team-social">
                     <ul className="social-link">
                       <li>
@@ -420,14 +429,15 @@ const About = () => {
                   </div>
                 </div>
                 <div className="team-info text-center">
-                  <h3 className="title">Alesha Mature</h3>
-                  <span className="position">Sr. Executive</span>
+                  <h3 className="title"></h3>
+                  <span className="position"></span>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </section>
+
       {/*====== End Team Section ======*/}
     </Layout>
   );

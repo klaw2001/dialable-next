@@ -132,7 +132,10 @@ const Index = () => {
                         </div>
                         <div className="col-lg-3 col-md-4 col-sm-12">
                           <div className="form_group">
-                            <Link href="/listing-list" className="main-btn icon-btn">
+                            <Link
+                              href="/listing-list"
+                              className="main-btn icon-btn"
+                            >
                               Search Now
                             </Link>
                           </div>
@@ -1393,35 +1396,50 @@ const Index = () => {
               <div className="client-item">
                 <div className="client-img">
                   <a href="#">
-                    <img src="assets/images/client/01.png" alt="Client Image" />
+                    <img
+                      src="https://seeklogo.com/images/B/becton-dickinson-and-company-bd-logo-AED2D78D2F-seeklogo.com.png"
+                      alt="Client Image"
+                    />
                   </a>
                 </div>
               </div>
               <div className="client-item">
                 <div className="client-img">
                   <a href="#">
-                    <img src="assets/images/client/02.png" alt="Client Image" />
+                    <img
+                      src="https://seeklogo.com/images/C/company-coffee-cup-logo-83FFFA726A-seeklogo.com.png"
+                      alt="Client Image"
+                    />
                   </a>
                 </div>
               </div>
               <div className="client-item">
                 <div className="client-img">
                   <a href="#">
-                    <img src="assets/images/client/03.png" alt="Client Image" />
+                    <img
+                      src="https://seeklogo.com/images/H/harley-davidson-logo-219FAF157E-seeklogo.com.png"
+                      alt="Client Image"
+                    />
                   </a>
                 </div>
               </div>
               <div className="client-item">
                 <div className="client-img">
                   <a href="#">
-                    <img src="assets/images/client/04.png" alt="Client Image" />
+                    <img
+                      src="https://seeklogo.com/images/C/company-eagle-wings-logo-385403947F-seeklogo.com.png"
+                      alt="Client Image"
+                    />
                   </a>
                 </div>
               </div>
               <div className="client-item">
                 <div className="client-img">
                   <a href="#">
-                    <img src="assets/images/client/02.png" alt="Client Image" />
+                    <img
+                      src="https://seeklogo.com/images/L/lukoil-oil-company-logo-042B1C7A0D-seeklogo.com.png"
+                      alt="Client Image"
+                    />
                   </a>
                 </div>
               </div>

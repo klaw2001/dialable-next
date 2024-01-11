@@ -11,14 +11,14 @@ const RangeSlider = dynamic(() => import("../src/components/RangeSlider"), {
 });
 
 const ListingList = () => {
-  const [listing , setListing] = useState([])
+  const [listing, setListing] = useState([]);
 
   useEffect(() => {
-    axios.get('/api/listing/get-all-listings')
+    axios
+      .get("/api/listing/get-all-listings")
       .then((res) => {
         console.log(res.data.data);
-        
-  
+
         setListing(res.data.data);
         // setMyids(categoryIds);
       })
@@ -26,7 +26,6 @@ const ListingList = () => {
         console.log(err);
       });
   }, []);
-
 
   return (
     <Layout>
@@ -144,11 +143,11 @@ const ListingList = () => {
                     className="newsletter-widget-wrap bg_cover"
                     style={{
                       backgroundImage:
-                        "url(assets/images/newsletter-widget-1.jpg)",
+                        "url(https://images.unsplash.com/reserve/LJIZlzHgQ7WPSh5KVTCB_Typewriter.jpg?q=80&w=1896&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)",
                     }}
                   >
                     <i className="flaticon-email-1" />
-                    <h3>Subscribe Our Newsletter</h3>
+                    <h3>News Letter</h3>
                     <button className="main-btn icon-btn">Subscribe</button>
                   </div>
                 </div>
@@ -199,79 +198,78 @@ const ListingList = () => {
                 </div>
               </div>
               <div className="listing-list-wrapper">
-                {listing.map((elem)=>(
-
-                <div className="listing-item listing-list-item-two mb-60 wow fadeInUp" key={elem._id}>
-                  <div className="listing-thumbnail">
-                    <img
-                      src={elem.thumbnail}
-                      alt="listing Image"
-                    />
-                    <div className="thumbnail-meta d-flex justify-content-between align-items-center">
-                      <div className="meta-icon-title d-flex align-items-center">
-                        <div className="icon">
-                          <i className="flaticon-government" />
+                {listing.map((elem) => (
+                  <div
+                    className="listing-item listing-list-item-two mb-60 wow fadeInUp"
+                    key={elem._id}
+                  >
+                    <div className="listing-thumbnail">
+                      <img src={elem.thumbnail} alt="listing Image" />
+                      <div className="thumbnail-meta d-flex justify-content-between align-items-center">
+                        <div className="meta-icon-title d-flex align-items-center">
+                          <div className="icon">
+                            <i className="flaticon-government" />
+                          </div>
+                          <div className="title">
+                            <h6>{elem.category?.name}</h6>
+                          </div>
                         </div>
-                        <div className="title">
-                          <h6>{elem.category?.name}</h6>
-                        </div>
+                        <span className="status st-open">Open</span>
                       </div>
-                      <span className="status st-open">Open</span>
+                    </div>
+                    <div className="listing-content">
+                      <h3 className="title">
+                        <Link href={`sin-listings/${elem._id}`}>
+                          <a>{elem.placeName}</a>
+                        </Link>
+                      </h3>
+                      <div className="ratings">
+                        <ul className="ratings ratings-three">
+                          <li className="star">
+                            <i className="flaticon-star-1" />
+                          </li>
+                          <li className="star">
+                            <i className="flaticon-star-1" />
+                          </li>
+                          <li className="star">
+                            <i className="flaticon-star-1" />
+                          </li>
+                          <li className="star">
+                            <i className="flaticon-star-1" />
+                          </li>
+                          <li className="star">
+                            <i className="flaticon-star-1" />
+                          </li>
+                          <li>
+                            <span>
+                              <a href="#">(02 Reviews)</a>
+                            </span>
+                          </li>
+                        </ul>
+                      </div>
+                      <span className="price">$05.00 - $80.00</span>
+                      <span className="phone-meta">
+                        <i className="ti-tablet" />
+                        <a href={`tel:+${elem.phone}`}>{elem.phone}</a>
+                      </span>
+                      <div className="listing-meta">
+                        <ul>
+                          <li>
+                            <span>
+                              <i className="ti-location-pin" />
+                              California, USA
+                            </span>
+                          </li>
+                          <li>
+                            <span>
+                              <i className="ti-heart" />
+                              <a href="#">Save</a>
+                            </span>
+                          </li>
+                        </ul>
+                      </div>
                     </div>
                   </div>
-                  <div className="listing-content">
-                    <h3 className="title">
-                      <Link href={`sin-listings/${elem._id}`}>
-                        <a>{elem.placeName}</a>
-                      </Link>
-                    </h3>
-                    <div className="ratings">
-                      <ul className="ratings ratings-three">
-                        <li className="star">
-                          <i className="flaticon-star-1" />
-                        </li>
-                        <li className="star">
-                          <i className="flaticon-star-1" />
-                        </li>
-                        <li className="star">
-                          <i className="flaticon-star-1" />
-                        </li>
-                        <li className="star">
-                          <i className="flaticon-star-1" />
-                        </li>
-                        <li className="star">
-                          <i className="flaticon-star-1" />
-                        </li>
-                        <li>
-                          <span>
-                            <a href="#">(02 Reviews)</a>
-                          </span>
-                        </li>
-                      </ul>
-                    </div>
-                    <span className="price">$05.00 - $80.00</span>
-                    <span className="phone-meta">
-                      <i className="ti-tablet" />
-                      <a href={`tel:+${elem.phone}`}>{elem.phone}</a>
-                    </span>
-                    <div className="listing-meta">
-                      <ul>
-                        <li>
-                          <span>
-                            <i className="ti-location-pin" />
-                            California, USA
-                          </span>
-                        </li>
-                        <li>
-                          <span>
-                            <i className="ti-heart" />
-                            <a href="#">Save</a>
-                          </span>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
                 ))}
                 {/* <div className="listing-item listing-list-item-two mb-60 wow fadeInUp">
                   <div className="listing-thumbnail">
